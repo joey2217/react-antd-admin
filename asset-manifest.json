@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/react-antd-admin/static/css/main.a231459d.chunk.css",
+    "main.js": "/react-antd-admin/static/js/main.9b28a025.chunk.js",
+    "main.js.map": "/react-antd-admin/static/js/main.9b28a025.chunk.js.map",
+    "runtime-main.js": "/react-antd-admin/static/js/runtime-main.0ffd9c6a.js",
+    "runtime-main.js.map": "/react-antd-admin/static/js/runtime-main.0ffd9c6a.js.map",
+    "static/css/2.d54adac0.chunk.css": "/react-antd-admin/static/css/2.d54adac0.chunk.css",
+    "static/js/2.548afa1d.chunk.js": "/react-antd-admin/static/js/2.548afa1d.chunk.js",
+    "static/js/2.548afa1d.chunk.js.map": "/react-antd-admin/static/js/2.548afa1d.chunk.js.map",
+    "index.html": "/react-antd-admin/index.html",
+    "precache-manifest.782b76f77eda935c264e8b6f5f0a5bce.js": "/react-antd-admin/precache-manifest.782b76f77eda935c264e8b6f5f0a5bce.js",
+    "service-worker.js": "/react-antd-admin/service-worker.js",
+    "static/css/2.d54adac0.chunk.css.map": "/react-antd-admin/static/css/2.d54adac0.chunk.css.map",
+    "static/css/main.a231459d.chunk.css.map": "/react-antd-admin/static/css/main.a231459d.chunk.css.map",
+    "static/js/2.548afa1d.chunk.js.LICENSE": "/react-antd-admin/static/js/2.548afa1d.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0ffd9c6a.js",
+    "static/css/2.d54adac0.chunk.css",
+    "static/js/2.548afa1d.chunk.js",
+    "static/css/main.a231459d.chunk.css",
+    "static/js/main.9b28a025.chunk.js"
+  ]
+}
