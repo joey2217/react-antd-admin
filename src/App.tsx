@@ -1,30 +1,13 @@
-import React, { useEffect } from 'react';
-import { Button } from 'antd';
-import { login } from './api/user';
-import { useObserver, useLocalStore } from 'mobx-react';
-import store from './store';
-
+import React from 'react';
 import './App.css';
+import { Button } from 'antd';
 
-const App: React.FC = () => {
-  const s = useLocalStore(() => store);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await login({ username: '', password: '' });
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-  return useObserver(() => (
+function App() {
+  return (
     <div className="App">
-      {s.user.userInfo.name}
-      <Button type="primary">Button</Button>
+     <Button type="primary">Button</Button>
     </div>
-  ));
-};
+  );
+}
 
 export default App;
