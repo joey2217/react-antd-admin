@@ -1,20 +1,19 @@
-import React,{Suspense, lazy} from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NotFound from "./components/NotFound";
+import Home from "./pages/home";
+import Login from "./pages/login";
 import "./App.css";
-import NotFound from './components/NotFound'
-import { Spin } from 'antd';
 
 function App() {
   return (
     <BrowserRouter>
       <div id="app">
-        <Suspense fallback={<Spin/>}>
-          <Switch>
-            <Route path="/" exact component={lazy(()=>import('./pages/home'))}  />
-            <Route path="/login"  component={lazy(()=>import('./pages/login'))}  />
-            <Route component={NotFound}/>
-          </Switch>
-        </Suspense>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     </BrowserRouter>
   );
