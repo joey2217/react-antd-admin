@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react'
 
-import CounterStore from './counter-store';
+import UserStore from './user-store';
 
 const store = {
-  counterStore: new CounterStore(),
+  userStore: new UserStore(),
 }
 
 const storeContext = createContext(store);

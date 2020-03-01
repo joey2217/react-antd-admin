@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { login } from "../../api/user";
 import { useHistory } from "react-router-dom";
+import { useStore } from "../../store";
 
 const LoginForm = () => {
   const history = useHistory();
 
+  const {
+    userStore: { login }
+  } = useStore();
+
+  const [loading, setLoading] = useState(false);
+
   const onFinish = async ({ username, password }: any) => {
     try {
-      console.log(username, password);
-      const res = await login({ username, password });
-      console.log(res);
+      setLoading(true);
+      await login({ username, password });
       history.push("/");
     } catch (error) {
       console.log(error);
-    }
+      setLoading(false);
+    } 
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -46,8 +52,8 @@ const LoginForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button block type="primary" htmlType="submit">
-          Submit
+        <Button block type="primary" htmlType="submit" loading={loading}>
+          Login
         </Button>
       </Form.Item>
     </Form>

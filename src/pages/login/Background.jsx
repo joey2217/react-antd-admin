@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Particles from "particlesjs";
+import CoolBackground from '../../assets/img/cool-background.png'
+
+// TODO 
 
 const FixedBack = styled.canvas`
   position: absolute;
@@ -8,7 +11,8 @@ const FixedBack = styled.canvas`
   top: 0;
   left: 0;
   z-index: -1;
-  background-color:#a4b0be;
+  background:url(${CoolBackground}) no-repeat center center;
+  background-size:cover;
 `;
 
 const Background = () => {

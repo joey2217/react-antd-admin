@@ -2,3 +2,6 @@
 
 ## [requestUrl](https://mock-server-eight.now.sh/api/react-antd-admin/user/login)
 
+## 登录逻辑
+
+![login](./login.png)
