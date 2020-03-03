@@ -8,8 +8,9 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import './layout.css'
+import './layout.less'
 import useWindowSize from '../../components/useWindowSize'
+import AppMain from './AppMain'
 
 const { Header, Sider, Content } = Layout;
 
@@ -72,6 +73,7 @@ const Home = () => {
             }}
           >
             {width}*{height}
+            <AppMain/>
           </Content>
         </Layout>
       </Layout>

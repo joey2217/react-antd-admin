@@ -5,3 +5,5 @@
 ## 登录逻辑
 
 ![login](./login.png)
+
+## [I18N](https://github.com/formatjs/react-intl)

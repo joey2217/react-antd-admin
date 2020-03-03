@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
+import { useIntl } from "react-intl";
 
-const AppMain = ()=>{
-   return (
-       <>AppMain</>
-   )
-}
+const AppMain = () => {
+  const { formatMessage: f } = useIntl();
+  return <>{f({ id: "hello" })}</>;
+};
 export default AppMain;
