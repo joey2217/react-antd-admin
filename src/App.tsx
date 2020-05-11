@@ -1,20 +1,20 @@
 import React from "react";
 import "./App.css";
-import { useStore } from "./store";
-import { observer } from "mobx-react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Layout from "./layout";
+import Login from "./pages/login";
+import NotFound from "./components/Exception/NotFound";
 
 function App() {
-  const {
-    countStore: { count, increase, decrease, doubleCount },
-  } = useStore();
   return (
-    <div className="App">
-      <div>count:{count}</div>
-      <div>doubleCount:{doubleCount}</div>
-      <button onClick={ increase}>increase</button>
-      <button onClick={ decrease}>decrease</button>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Layout} />
+        <Route path="/login" component={Login} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
-export default observer(App);
+export default App;
