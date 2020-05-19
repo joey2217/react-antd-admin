@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react'
-import CountStore from './CountStore'
 import UserStore from './UserStore'
+import AppStore from './AppStore'
 
 const store = {
-  countStore: new CountStore(),
   userStore: new UserStore(),
+  appStore: new AppStore(),
 }
 
 const storeContext = createContext(store);
