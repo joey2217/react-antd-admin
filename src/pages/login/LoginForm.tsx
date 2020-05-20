@@ -30,7 +30,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Form  name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
+    <Form name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
       <Form.Item
         name="username"
         rules={[{ required: true, message: "Please input your username!" }]}

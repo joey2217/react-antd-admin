@@ -12,4 +12,10 @@ export default class name {
     this.collapsed = !this.collapsed;
     localStorage[COLLAPSED] = this.collapsed;
   }
+
+  @action.bound
+  setCollapsed(collapsed: boolean) {
+    this.collapsed = collapsed;
+    localStorage[COLLAPSED] = collapsed;
+  }
 }

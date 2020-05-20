@@ -40,4 +40,13 @@ export default class CountStore {
     }
   }
 
+  // custom authority validate 
+  @action.bound
+  validateAuth(path:string){
+    if (path&&this.accessToken) {
+      return true;
+    }
+    return false;
+  }
+
 } 

@@ -1,48 +1,46 @@
 import React, { useEffect } from "react";
-import useBreakpoint from "../components/hooks/useBreakpoint";
 import { useStore } from "../store";
 import { useHistory, useLocation } from "react-router-dom";
+import { Layout } from "antd";
 
-import { Layout, Menu } from 'antd';
-
-const { Header, Content,  Sider } = Layout;
-
+import AppHeader from "./AppHeader";
+import SideBar from "./SideBar";
+import AppContent from "./AppContent";
+import "./style.css";
 
 const AppLayout: React.FC = () => {
-
-  const breakpoint = useBreakpoint();
   const { pathname } = useLocation();
   const history = useHistory();
 
-  useEffect(() => {
-    console.log("breakpoint:" + breakpoint);
-  }, [breakpoint]);
 
   const {
-    userStore: { getUserInfo },
+    userStore: { accessToken,getUserInfo },
   } = useStore();
 
   useEffect(() => {
     (async () => {
       try {
-        await getUserInfo();
+        if (accessToken) {
+          await getUserInfo();
+        }else{
+          throw new Error("No AccessToken!")
+        }
       } catch (error) {
         console.error(error);
         history.replace(`/login?ref=${pathname}`);
       }
     })();
-  }, [getUserInfo, history, pathname]);
+  }, [accessToken, getUserInfo, history, pathname]);
 
-  return     (
+  return (
+    <Layout id="layout" className="layout">
+      <SideBar />
       <Layout>
-          <Header>header</Header>
-          <Layout>
-          <Sider>left sidebar</Sider>
-          <Content>main content</Content>
-          <Sider>right sidebar</Sider>
-        </Layout>
+        <AppHeader />
+        <AppContent />
       </Layout>
-    )
+    </Layout>
+  );
 };
- 
+
 export default AppLayout;
