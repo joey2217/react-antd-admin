@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import { LoginData } from '../models/user'
-import { login, getUserInfo } from '../api/user'
+import { login, getUserInfo, logout } from '../api/user'
 import { getToken, setToken } from '../utils/auth'
 
 export default class CountStore {
@@ -22,7 +22,6 @@ export default class CountStore {
       setToken(token)
       return message;
     } catch (error) {
-      console.error(error);
       throw new Error(error);
     }
   }
@@ -35,18 +34,29 @@ export default class CountStore {
       this.avatar = avatar;
       return message
     } catch (error) {
-      console.error(error);
       throw new Error(error);
     }
   }
 
   // custom authority validate 
   @action.bound
-  validateAuth(path:string){
-    if (path&&this.accessToken) {
+  validateAuth(path: string) {
+    if (path && this.accessToken) {
       return true;
     }
     return false;
   }
 
+  @action.bound
+  async logout() {
+    try {
+      const { data: { message } } = await logout();
+      this.accessToken = "";
+      this.username = "";
+      setToken("");
+      return message;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 } 
