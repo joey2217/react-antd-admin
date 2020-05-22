@@ -1,6 +1,6 @@
 {
   "name": "react-antd-admin",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "proxy": "https://mock-server-eight.now.sh/api/react-antd-admin",
   "dependencies": {
     "@ant-design/icons": "^4.1.0",

@@ -13,6 +13,9 @@ function App() {
         <Route path="/"  exact render={() => <Redirect to="/home" />} />
         <Route path="/login" component={Login} />
         <Route path="/home"  component={Layout} />
+        <Route path="/table"  component={Layout} />
+        <Route path="/form"  component={Layout} />
+        <Route path="/menu"  component={Layout} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
