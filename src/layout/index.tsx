@@ -12,25 +12,26 @@ const AppLayout: React.FC = () => {
   const { pathname } = useLocation();
   const history = useHistory();
 
-
   const {
-    userStore: { accessToken,getUserInfo },
+    userStore: { accessToken, getUserInfo, userId },
   } = useStore();
 
   useEffect(() => {
     (async () => {
       try {
         if (accessToken) {
-          await getUserInfo();
-        }else{
-          throw new Error("No AccessToken!")
+          if (!userId) {
+            await getUserInfo();
+          }
+        } else {
+          throw new Error("No AccessToken!");
         }
       } catch (error) {
         console.error(error);
         history.replace(`/login?ref=${pathname}`);
       }
     })();
-  }, [accessToken, getUserInfo, history, pathname]);
+  }, [accessToken, getUserInfo, history, pathname, userId]);
 
   return (
     <Layout id="layout" className="layout">

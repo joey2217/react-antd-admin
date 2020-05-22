@@ -22,6 +22,7 @@ request.interceptors.request.use((config: AxiosRequestConfig) => {
 
 
 request.interceptors.response.use((response: AxiosResponse<any>) => {
+  console.log(response);
   return response;
 }, (error) => {
   console.error(error);

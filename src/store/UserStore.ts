@@ -9,6 +9,9 @@ export default class CountStore {
   username: string = '';
 
   @observable
+  userId: string = '';
+
+  @observable
   avatar: string = 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png';
 
   @observable
@@ -29,9 +32,10 @@ export default class CountStore {
   @action.bound
   async getUserInfo() {
     try {
-      const { data: { name, avatar, message } } = await getUserInfo();
+      const { data: { name, avatar, message,userId} } = await getUserInfo();
       this.username = name;
       this.avatar = avatar;
+      this.userId = userId;
       return message
     } catch (error) {
       throw new Error(error);
