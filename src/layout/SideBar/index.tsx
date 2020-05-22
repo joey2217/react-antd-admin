@@ -119,9 +119,6 @@ const Sidebar = () => {
         theme="dark"
         mode="inline"
         defaultSelectedKeys={[match.url]}
-        onClick={({ item, key, keyPath, domEvent }: ClickParam) => {
-          console.log(item, key, keyPath, domEvent);
-        }}
       >
         {renderMenu(menuList)}
       </Menu>
