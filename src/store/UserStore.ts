@@ -57,6 +57,7 @@ export default class CountStore {
       const { data: { message } } = await logout();
       this.accessToken = "";
       this.username = "";
+      this.userId = "";
       setToken("");
       return message;
     } catch (error) {
