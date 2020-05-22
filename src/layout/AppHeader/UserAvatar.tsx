@@ -7,7 +7,6 @@ import { HomeOutlined, LogoutOutlined } from "@ant-design/icons";
 
 import { useStore } from "../../store";
 
-
 const UserAvatar = () => {
   const {
     userStore: { avatar, username, logout },
@@ -42,9 +41,9 @@ const UserAvatar = () => {
   );
 
   return (
-    <Dropdown overlay={menu}>
+    <Dropdown overlay={menu} trigger={["hover", "click"]}>
       <div className="user-avatar">
-        <Avatar src={avatar} className="user-avatar-img"/>
+        <Avatar src={avatar} className="user-avatar-img" />
         <span className="user-avatar-name">{username}</span>
       </div>
     </Dropdown>

@@ -3,7 +3,6 @@ import { Layout, Menu } from "antd";
 import { observer } from "mobx-react";
 import { MenuItemProps } from "antd/lib/menu/MenuItem";
 import { SubMenuProps } from "antd/lib/menu/SubMenu";
-import { ClickParam } from "antd/lib/menu";
 import { Link, useRouteMatch } from "react-router-dom";
 import useBreakpoint from "../../components/hooks/useBreakpoint";
 import { useStore } from "../../store";
