@@ -1,9 +1,11 @@
 {
   "name": "react-antd-admin",
   "version": "1.0.0",
-  "proxy": "https://mock-server-eight.now.sh/api/react-antd-admin",
+  "proxy": "https://react-antd-admin-green.now.sh/",
+  "license": "MIT",
   "dependencies": {
     "@ant-design/icons": "^4.1.0",
+    "@craco/craco": "^5.6.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -14,26 +16,24 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
-    "antd": "^4.2.4",
+    "antd": "^4.2.5",
     "axios": "^0.19.2",
-    "babel-plugin-import": "^1.13.0",
-    "customize-cra": "^0.9.1",
+    "craco-less": "^1.16.0",
     "lodash": "^4.17.15",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "mockjs": "^1.1.0",
     "react": "^16.13.1",
-    "react-app-rewired": "^2.1.6",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,5 +49,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

@@ -6,7 +6,7 @@ import { Layout } from "antd";
 import AppHeader from "./AppHeader";
 import SideBar from "./SideBar";
 import AppContent from "./AppContent";
-import "./style.css";
+import "./style.less";
 
 const AppLayout: React.FC = () => {
   const { pathname } = useLocation();

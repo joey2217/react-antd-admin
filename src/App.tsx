@@ -4,7 +4,7 @@ import Layout from "./layout";
 import Login from "./pages/login";
 import NotFound from "./components/Exception/NotFound";
 
-import "./App.css";
+import "./App.less";
 
 function App() {
   return (
