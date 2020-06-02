@@ -67,7 +67,7 @@ const Sidebar = () => {
   const match = useRouteMatch();
 
   const {
-    appStore: { collapsed, setCollapsed },
+    appStore: { collapsed, setCollapsed,theme },
   } = useStore();
 
   useEffect(() => {
@@ -105,6 +105,7 @@ const Sidebar = () => {
     });
   };
 
+
   return (
     <Sider
       trigger={null}
@@ -112,10 +113,11 @@ const Sidebar = () => {
       collapsedWidth={breakpoint === "sm" ? 0 : 80}
       collapsed={collapsed}
       className={["sider", `sider-${breakpoint}`].join(" ")}
+      theme={theme==='dark'?'dark':'light'}
     >
       <Logo />
       <Menu
-        theme="dark"
+        theme={theme==='dark'?'dark':'light'}
         mode="inline"
         defaultSelectedKeys={[match.url]}
       >

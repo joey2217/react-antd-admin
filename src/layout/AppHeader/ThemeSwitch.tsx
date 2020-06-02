@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch } from "antd";
-
-import {} from "mobx-react";
+// import {} from "mobx-react";
 import { useStore } from "../../store";
 
 const ThemeSwitch = () => {
@@ -14,7 +13,7 @@ const ThemeSwitch = () => {
         checkedChildren="🌞"
         unCheckedChildren="🌛"
         defaultChecked={theme === "default"}
-        onChange={toggleTheme}
+        onChange={()=>toggleTheme()}
       />
     </div>
   );

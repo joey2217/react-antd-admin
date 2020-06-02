@@ -1,9 +1,66 @@
+@import "../styles/theme.less";
+
+.default-theme {
+  #layout {
+    .header {
+      background: @bg;
+      box-shadow: 0 2px 8px #f0f1f2;
+      .user-avatar {
+        &-img {
+          color: #1890ff;
+          background: hsla(0, 0%, 100%, 0.85);
+        }
+        &-name {
+          color: rgba(0, 0, 0, 0.65);
+        }
+      }
+    }
+    .main {
+      background: #fff;
+    }
+    .sider {
+      .logo {
+        background: rgba(0, 0, 0, 0.2);
+        &-title {
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.dark-theme {
+  #layout {
+    .header {
+      background: @dark-bg;
+      .user-avatar {
+        &-img {
+          color: #1890ff;
+          background: hsla(0, 0%, 100%, 0.85);
+        }
+        &-name {
+          color: @dark-color;
+        }
+      }
+    }
+    .main {
+      background: @dark-bg;
+    }
+    .sider {
+      .logo {
+        background: rgba(255, 255, 255, 0.2);
+        &-title {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
 #layout {
   min-height: 100vh;
   .header {
-    background: #fff;
     padding: 0;
-    box-shadow: 0 2px 8px #f0f1f2;
     display: flex;
     .user-avatar {
       display: flex;
@@ -12,12 +69,9 @@
       padding: 0 12px;
       .user-avatar-img {
         margin: 20px 8px 20px 0;
-        color: #1890ff;
         vertical-align: top;
-        background: hsla(0, 0%, 100%, 0.85);
       }
       .user-avatar-name {
-        color: rgba(0, 0, 0, 0.65);
         vertical-align: middle;
       }
     }
@@ -32,40 +86,35 @@
         color: #1890ff;
       }
     }
-    .theme-switch{
+    .theme-switch {
       margin: 0 10px;
     }
   }
-}
-
-#layout .sider .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-#layout .sider .logo .logo-img {
-  width: 32px;
-  margin: 0 8px;
-}
-
-#layout .sider .logo .logo-title {
-  line-height: 32px;
-  margin: 0;
-  text-align: center;
-  flex-grow: 1;
-  font-weight: 600;
-  font-size: 20px;
-  vertical-align: middle;
-  animation: fade-in;
-  animation-duration: 0.3s;
-  color: #fff;
-}
-
-#layout .main {
-  margin: 24px 16px;
-  background: #fff;
+  .sider {
+    .logo {
+      height: 32px;
+      margin: 16px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      &-img {
+        width: 32px;
+        margin: 0 8px;
+      }
+      &-title {
+        line-height: 32px;
+        margin: 0;
+        text-align: center;
+        flex-grow: 1;
+        font-weight: 600;
+        font-size: 20px;
+        vertical-align: middle;
+        animation: fade-in;
+        animation-duration: 0.3s;
+      }
+    }
+  }
+  .main {
+    margin: 24px 16px;
+  }
 }

@@ -1,12 +1,20 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./layout";
 import Login from "./pages/login";
 import NotFound from "./components/Exception/NotFound";
+import {useStore} from './store'
+
 
 import "./App.less";
 
 function App() {
+  const {appStore:{theme,toggleTheme}} =useStore();
+  useEffect(()=>{
+    if (theme==='dark') {
+      toggleTheme('dark');
+    }
+  },[theme, toggleTheme])
   return (
     <BrowserRouter>
       <Switch>

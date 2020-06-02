@@ -1,9 +1,8 @@
 import { observable, action, autorun } from 'mobx';
+import { Theme, switchTheme } from "../utils/theme";
 
 const COLLAPSED = 'collapsed';
 const THEME = 'theme';
-
-export type Theme = | 'default' | 'dark';
 
 export default class name {
 
@@ -26,12 +25,17 @@ export default class name {
   }
 
   @action.bound
-  toggleTheme() {
-    this.theme = this.theme === 'default' ? 'dark' : 'default';
-    localStorage[THEME] = this.theme;
+  toggleTheme(theme?: Theme) {
+    if (theme) {
+      this.theme = theme;
+      localStorage[THEME] = this.theme;
+      switchTheme(this.theme);
+    } else {
+      this.theme = this.theme === 'default' ? 'dark' : 'default';
+      localStorage[THEME] = this.theme;
+      switchTheme(this.theme);
+    }
   }
-
-
 }
 
 autorun(reaction => {
