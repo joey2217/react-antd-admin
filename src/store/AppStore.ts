@@ -1,16 +1,24 @@
-import { observable, action, autorun } from 'mobx';
+import { observable, action } from 'mobx';
 import { Theme, switchTheme } from "../utils/theme";
 
 const COLLAPSED = 'collapsed';
 const THEME = 'theme';
+const LANG = 'lang';
 
-export default class name {
+
+export type Lang = |'en'|'zhCN'|'zh'
+
+
+export default class AppStore {
 
   @observable
   collapsed: boolean = localStorage[COLLAPSED] === 1;
 
   @observable
   theme: Theme = localStorage[THEME] || 'default';
+
+  @observable
+  lang: Lang = localStorage[LANG] || navigator.language;
 
   @action.bound
   toggleCollapsed() {
@@ -36,9 +44,11 @@ export default class name {
       switchTheme(this.theme);
     }
   }
-}
 
-autorun(reaction => {
-  console.log(reaction);
-  reaction.dispose()
-})
+  @action.bound
+  switchLang(lang: Lang) {
+    this.lang = lang;
+    localStorage[LANG] = lang;
+  }
+
+}

@@ -42,7 +42,7 @@ const UserAvatar = () => {
 
   return (
     <Dropdown overlay={menu} trigger={["hover", "click"]}>
-      <div className="user-avatar">
+      <div className="user-avatar action">
         <Avatar src={avatar} className="user-avatar-img" />
         <span className="user-avatar-name">{username}</span>
       </div>

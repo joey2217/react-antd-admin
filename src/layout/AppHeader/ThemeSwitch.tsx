@@ -8,7 +8,7 @@ const ThemeSwitch = () => {
     appStore: { theme, toggleTheme },
   } = useStore();
   return (
-    <div className="theme-switch">
+    <div className="theme-switch action">
       <Switch
         checkedChildren="🌞"
         unCheckedChildren="🌛"

@@ -4,6 +4,7 @@ import Trigger from './Trigger';
 import UserAvatar from './UserAvatar';
 import ThemeSwitch from './ThemeSwitch';
 import FullscreenSwitch from './FullscreenSwitch'
+import LangDropdown from './LangDropdown'
 
 const { Header } = Layout;
 
@@ -14,6 +15,7 @@ const AppHeader = ()=>{
         <FullscreenSwitch />
         <ThemeSwitch />
         <UserAvatar />
+        <LangDropdown />
       </Header>
    )
 }

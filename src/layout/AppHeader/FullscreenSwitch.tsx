@@ -12,7 +12,7 @@ const FullscreenSwitch = () => {
   }
 
   return (
-    <div className="fullscreen-switch">
+    <div className="fullscreen-switch action">
       {
         fullscreen ? <FullscreenExitOutlined title="exit fullscreen" onClick={() => toggleFull(false)} /> : <FullscreenOutlined title="fullscreen" onClick={() => toggleFull(true)} />
       }

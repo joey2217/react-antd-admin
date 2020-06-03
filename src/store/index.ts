@@ -10,3 +10,5 @@ const store = {
 const storeContext = createContext(store);
 
 export const useStore = () => useContext(storeContext);
+
+export default store;

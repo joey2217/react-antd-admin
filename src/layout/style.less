@@ -4,7 +4,12 @@
   #layout {
     .header {
       background: @bg;
-      box-shadow: 0 2px 8px #f0f1f2;
+      box-shadow:inset 0 2px 8px #f0f1f2;
+      .action{
+        &:hover{
+          background:rgba(0,0,0,.025);
+        }
+      }
       .user-avatar {
         &-img {
           color: #1890ff;
@@ -33,6 +38,11 @@
   #layout {
     .header {
       background: @dark-bg;
+      .action{
+        &:hover{
+          background:rgba(255,255,255,.025);
+        }
+      }
       .user-avatar {
         &-img {
           color: #1890ff;
@@ -62,6 +72,7 @@
   .header {
     padding: 0;
     display: flex;
+
     .user-avatar {
       display: flex;
       align-items: center;
@@ -87,7 +98,15 @@
       }
     }
     .theme-switch {
-      margin: 0 10px;
+      padding: 0 10px;
+    }
+    .fullscreen-switch{
+      padding: 0 10px;
+      font-size: 16px;
+    }
+    .lang-dropdown{
+      padding: 0 10px;
+      cursor: pointer;
     }
   }
   .sider {
