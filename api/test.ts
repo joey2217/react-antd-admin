@@ -3,8 +3,9 @@ import { Random } from "mockjs";
 
 export default (request: NowRequest, response: NowResponse) => {
   response.status(200).send({
-    req:request,
-    res:response,
+    query:request.query,
+    data:request.body,
+    cookies:request.cookies,
     name: Random.cname(),
     token: Random.guid(),
     message: '登录成功!'
