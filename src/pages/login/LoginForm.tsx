@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import { useIntl } from "react-intl";
 import { useStore } from "../../store";
 
+const usernameReg = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
+const passwordReg = /^[a-zA-Z]\w{5,17}$/;
+
 const LoginForm = () => {
   const history = useHistory();
   const { formatMessage: f } = useIntl();
@@ -35,7 +38,7 @@ const LoginForm = () => {
     <Form name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
       <Form.Item
         name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
+        rules={[{ required: true,pattern:usernameReg ,message: f({ id: "usernameMessage" }) }]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
@@ -45,9 +48,9 @@ const LoginForm = () => {
 
       <Form.Item
         name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        rules={[{ required: true,pattern:passwordReg, message: f({ id: "passwordMessage" }) }]}
       >
-        <Input
+        <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder={f({ id: "password" })}

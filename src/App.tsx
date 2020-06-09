@@ -31,6 +31,7 @@ function App() {
           <Route path="/table" component={Layout} />
           <Route path="/form" component={Layout} />
           <Route path="/menu" component={Layout} />
+          <Route path="/exception" component={Layout} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

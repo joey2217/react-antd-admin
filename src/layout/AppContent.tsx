@@ -10,6 +10,7 @@ const Home = React.lazy(() => import("../pages/home"));
 const Form = React.lazy(() => import("../pages/form"));
 const Table = React.lazy(() => import("../pages/table"));
 const Menu = React.lazy(() => import("../pages/menu"));
+const Exception = React.lazy(() => import("../pages/exception"));
 
 const { Content } = Layout;
 
@@ -24,6 +25,7 @@ const AppContent = () => {
           <AuthRoute path="/menu/menu2" component={Menu} />
           <AuthRoute path="/menu/menu1/menu1-1" component={Menu} />
           <AuthRoute path="/menu/menu1/menu1-2" component={Menu} />
+          <Route path="/exception/:code" component={Exception} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>

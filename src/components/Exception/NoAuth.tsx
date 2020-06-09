@@ -1,17 +1,22 @@
 import React from "react";
 import { Result, Button } from "antd";
 import { Link } from "react-router-dom";
+import { useIntl } from "react-intl";
 
-const NoAuth = () => (
-  <Result
-    status="403"
-    title="403"
-    subTitle="Sorry, you are not authorized to access this page."
-    extra={
-      <Link to="/login">
-        <Button type="primary">Go Login</Button>
-      </Link>
-    }
-  />
-);
+const NoAuth = () => {
+  const { formatMessage: f } = useIntl();
+
+  return (
+    <Result
+      status="403"
+      title="403"
+      subTitle={f({ id: "noAuthSubTitle" })}
+      extra={
+        <Link to="/">
+          <Button type="primary">{f({ id: "backHome" })}</Button>
+        </Link>
+      }
+    />
+  );
+};
 export default NoAuth;

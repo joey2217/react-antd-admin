@@ -1,6 +1,7 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse,AxiosError } from 'axios'
 import { message } from 'antd';
 import { getToken } from "../utils/auth";
+import {IRequest} from '../models/type'
 
 const request: AxiosInstance = axios.create({
   // baseURL,  
@@ -8,7 +9,7 @@ const request: AxiosInstance = axios.create({
   // timeout: 5000  
 })
 
-const TOKEN_KEY = 'React-Admin-Request-Token-Key'
+const TOKEN_KEY = 'React-Admin-Request-Token'
 
 request.interceptors.request.use((config: AxiosRequestConfig) => {
   const token = getToken()
@@ -21,11 +22,14 @@ request.interceptors.request.use((config: AxiosRequestConfig) => {
 });
 
 
-request.interceptors.response.use((response: AxiosResponse<any>) => {
+request.interceptors.response.use((response: AxiosResponse<IRequest>) => {
   return response;
-}, (error) => {
+}, (error:AxiosError<IRequest>) => {
   console.error(error);
   message.error(error.message || 'Oops,出错了!');
+  // if (error.code==='403') {
+  //   window.location.replace('/login');
+  // }
   return Promise.reject(error);
 });
 

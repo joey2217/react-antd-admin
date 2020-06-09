@@ -1,7 +1,7 @@
 import { AxiosPromise } from 'axios'
 import request from '../utils/request'
-import { LoginData,IUser } from '../models/user'
-import { IRequest} from '../models/type'
+import { LoginData, IUser } from '../models/user'
+import { IRequest } from '../models/type'
 
 /**
  * 登录 获取token
@@ -17,7 +17,7 @@ export function login(data: LoginData): AxiosPromise<IUser> {
 /**
  * 获取用户信息
  */
-export function getUserInfo(): AxiosPromise<IUser>{
+export function getUserInfo(): AxiosPromise<IUser> {
   return request({
     url: '/api/user/user-info',
     method: 'GET',
@@ -26,7 +26,7 @@ export function getUserInfo(): AxiosPromise<IUser>{
 /**
  * 登出
  */
-export function logout(): AxiosPromise<IRequest>{
+export function logout(): AxiosPromise<IRequest> {
   return request({
     url: '/api/user/logout',
     method: 'POST',
