@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Grid } from "antd";
 import { observer } from "mobx-react";
 import { MenuItemProps } from "antd/lib/menu/MenuItem";
 import { SubMenuProps } from "antd/lib/menu/SubMenu";
 import { Link, useRouteMatch } from "react-router-dom";
-import useBreakpoint from "../../components/hooks/useBreakpoint";
 import { useStore } from "../../store";
 import {
   DashboardOutlined,
@@ -12,13 +11,22 @@ import {
   FormOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
+import { useIntl } from "react-intl";
 
 import Logo from "./Logo";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
+const { useBreakpoint } = Grid;
 
-const menuList: Array<any> = [
+interface MenuProps {
+  path: string;
+  title: string;
+  icon?: React.ReactNode;
+  children?: Array<MenuProps>;
+}
+
+const menuList: Array<MenuProps> = [
   {
     path: "/home",
     title: "home",
@@ -45,11 +53,11 @@ const menuList: Array<any> = [
         children: [
           {
             path: "/menu/menu1/menu1-1",
-            title: "menu1-1",
+            title: "menu11",
           },
           {
             path: "/menu/menu1/menu1-2",
-            title: "menu1-2",
+            title: "menu12",
           },
         ],
       },
@@ -66,28 +74,30 @@ const Sidebar = () => {
 
   const match = useRouteMatch();
 
+  const { formatMessage: f } = useIntl();
+
   const {
-    appStore: { collapsed, setCollapsed,theme },
+    appStore: { collapsed, setCollapsed, theme },
   } = useStore();
 
   useEffect(() => {
-    if (breakpoint === "sm") {
+    const bp = Object.entries(breakpoint)
+      .filter((screen) => !!screen[1])
+      .map((screen) => screen[0]);
+    if (bp.includes("xs")) {
       setCollapsed(true);
     }
   }, [breakpoint, setCollapsed]);
 
-  interface MenuProps {
-    key: string | number;
-    path: string;
-    title: string | React.ReactNode;
-    children?: Array<MenuProps>;
-  }
-
-  const renderMenu = (data: Array<any>) => {
+  const renderMenu = (data: Array<MenuProps>) => {
     return data.map((item: MenuItemProps & SubMenuProps & MenuProps) => {
       if (item.children && item.children.length > 0) {
         return (
-          <SubMenu title={item.title} key={item.path} icon={item.icon}>
+          <SubMenu
+            title={f({ id: item.title })}
+            key={item.path}
+            icon={item.icon}
+          >
             {renderMenu(item.children)}
           </SubMenu>
         );
@@ -95,16 +105,15 @@ const Sidebar = () => {
       return (
         <Menu.Item
           {...item}
-          title={item.title}
+          title={f({ id: item.title })}
           key={item.path}
           icon={item.icon}
         >
-          <Link to={item.path}>{item.title}</Link>
+          <Link to={item.path}>{f({ id: item.title })}</Link>
         </Menu.Item>
       );
     });
   };
-
 
   return (
     <Sider
@@ -113,11 +122,11 @@ const Sidebar = () => {
       collapsedWidth={breakpoint === "sm" ? 0 : 80}
       collapsed={collapsed}
       className={["sider", `sider-${breakpoint}`].join(" ")}
-      theme={theme==='dark'?'dark':'light'}
+      theme={theme === "dark" ? "dark" : "light"}
     >
       <Logo />
       <Menu
-        theme={theme==='dark'?'dark':'light'}
+        theme={theme === "dark" ? "dark" : "light"}
         mode="inline"
         defaultSelectedKeys={[match.url]}
       >

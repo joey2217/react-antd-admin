@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { HomeOutlined, LogoutOutlined } from "@ant-design/icons";
+import { useIntl } from "react-intl";
 
 import { useStore } from "../../store";
 
@@ -13,6 +14,8 @@ const UserAvatar = () => {
   } = useStore();
 
   const history = useHistory();
+
+  const { formatMessage: f } = useIntl();
 
   const userLogout = async () => {
     try {
@@ -29,13 +32,13 @@ const UserAvatar = () => {
       <Menu.Item>
         <HomeOutlined />
         <Link to="/home" style={{ display: "inline-block" }}>
-          Home
+          {f({ id: "home" })}
         </Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item onClick={userLogout}>
         <LogoutOutlined />
-        <span>Logout</span>
+        <span>{f({ id: "logout" })}</span>
       </Menu.Item>
     </Menu>
   );

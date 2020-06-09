@@ -31,7 +31,7 @@ const LangDropdown = () => {
 
   return (
     <Dropdown overlay={menu} trigger={["hover", "click"]}>
-      <div className="lang-dropdown action">
+      <div className="lang-dropdown action cursor-pointer">
         <GlobalOutlined />
       </div>
     </Dropdown>

@@ -36,13 +36,11 @@ export default class AppStore {
   toggleTheme(theme?: Theme) {
     if (theme) {
       this.theme = theme;
-      localStorage[THEME] = this.theme;
-      switchTheme(this.theme);
     } else {
       this.theme = this.theme === 'default' ? 'dark' : 'default';
-      localStorage[THEME] = this.theme;
-      switchTheme(this.theme);
     }
+    localStorage[THEME] = this.theme;
+    switchTheme(this.theme);
   }
 
   @action.bound

@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
+import { useIntl } from "react-intl";
 import { useStore } from "../../store";
 
 const LoginForm = () => {
   const history = useHistory();
+  const { formatMessage: f } = useIntl();
 
   const {
     userStore: { login },
@@ -37,7 +39,7 @@ const LoginForm = () => {
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
+          placeholder={f({ id: "username" })}
         />
       </Form.Item>
 
@@ -48,13 +50,13 @@ const LoginForm = () => {
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
-          placeholder="Password"
+          placeholder={f({ id: "password" })}
         />
       </Form.Item>
 
       <Form.Item>
         <Button block type="primary" htmlType="submit" loading={loading}>
-          Login
+          {f({ id: "login" })}
         </Button>
       </Form.Item>
     </Form>

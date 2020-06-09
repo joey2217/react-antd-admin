@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch } from "antd";
-// import {} from "mobx-react";
 import { useStore } from "../../store";
 
 const ThemeSwitch = () => {
