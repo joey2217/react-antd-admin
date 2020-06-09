@@ -1912,6 +1912,13 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
+"@vercel/node@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.npmjs.org/@vercel/node/-/node-1.6.1.tgz#03b08cb88a2ea82bb80603e81ae61e7e283ace5a"
+  integrity sha512-sCxhMtShD2kCcpznmYO5HaCG3LaqaJVm0xZiJq8BuGIuSNWgS/aXi5IESFa01whsafaS7WhdMTlAwNPPOvH5lg==
+  dependencies:
+    "@types/node" "*"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
