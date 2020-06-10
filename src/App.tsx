@@ -6,8 +6,6 @@ import Login from "./pages/login";
 import NotFound from "./components/Exception/NotFound";
 
 import { useStore } from './store'
-import { observer } from 'mobx-react'
-
 import IntlWrapper from './language/index';
 
 import "./App.less";
@@ -31,6 +29,7 @@ function App() {
           <Route path="/table" component={Layout} />
           <Route path="/form" component={Layout} />
           <Route path="/menu" component={Layout} />
+          <Route path="/system" component={Layout} />
           <Route path="/exception" component={Layout} />
           <Route component={NotFound} />
         </Switch>
@@ -39,4 +38,4 @@ function App() {
   );
 }
 
-export default observer(App);
+export default App;

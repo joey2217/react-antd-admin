@@ -24,5 +24,9 @@ const en = {
   menu11:'Menu1-1',
   menu12:'Menu1-2',
   menu2:'Menu2',
+  system:'System',
+  account:'Account',
+  auth:'Auth',
+  role:'Role',
 }    
 export default en;

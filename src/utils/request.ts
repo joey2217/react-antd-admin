@@ -9,7 +9,7 @@ const request: AxiosInstance = axios.create({
   // timeout: 5000  
 })
 
-const TOKEN_KEY = 'React-Admin-Request-Token'
+const TOKEN_KEY = 'react-admin-request-token'
 
 request.interceptors.request.use((config: AxiosRequestConfig) => {
   const token = getToken()

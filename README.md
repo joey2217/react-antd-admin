@@ -28,3 +28,11 @@ const {formatMessage:f} =useIntl();
 ```
 
 - [Example](https://github.com/formatjs/formatjs/tree/master/packages/react-intl/examples)
+
+## MOCK
+
+[Vercel Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction)
+
+### 优点
+
+- 开发,线上(必须使用该服务)可同时使用

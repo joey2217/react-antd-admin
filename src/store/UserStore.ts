@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { LoginData } from '../models/user'
 import { login, getUserInfo, logout } from '../api/user'
-import { getToken, setToken } from '../utils/auth'
+import { getToken, setToken,removeToken } from '../utils/auth'
 
 export default class CountStore {
 
@@ -58,7 +58,7 @@ export default class CountStore {
       this.accessToken = "";
       this.username = "";
       this.userId = "";
-      setToken("");
+      removeToken();
       return message;
     } catch (error) {
       throw new Error(error);

@@ -10,6 +10,7 @@ import {
   TableOutlined,
   FormOutlined,
   MenuOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 
@@ -22,7 +23,7 @@ const { useBreakpoint } = Grid;
 interface MenuProps {
   path: string;
   title: string;
-  icon?: React.ReactNode;
+  icon?: React.ReactNode|string;
   children?: Array<MenuProps>;
 }
 
@@ -41,6 +42,25 @@ const menuList: Array<MenuProps> = [
     path: "/form",
     title: "form",
     icon: <FormOutlined />,
+  },
+  {
+    path: "/system",
+    title: "system",
+    icon:<SettingOutlined />,
+    children:[
+      {
+        path: "/system/account",
+        title: "account",
+      },
+      {
+        path: "/system/auth",
+        title: "auth",
+      },
+      {
+        path: "/system/role",
+        title: "role",
+      },
+    ]
   },
   {
     path: "/menu",

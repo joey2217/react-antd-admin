@@ -1,4 +1,3 @@
-
 const zhCN = {
   hello: "你好，方浩！",
   superHello: "你好，{ someone } !",
@@ -10,8 +9,8 @@ const zhCN = {
   login: '登 录',
   username: '账 号',
   password: '密 码',
-  usernameMessage: '账号字母开头，允许字母数字下划线,长度5-16位!',
-  passwordMessage: '密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线!',
+  usernameMessage: '请输入正确账号!',
+  passwordMessage: '请输入正确密码!',
   // Exception
   backHome: '返回首页',
   errorSubTitle: '服务器出错误了!',
@@ -25,5 +24,9 @@ const zhCN = {
   menu11: '菜单1-1',
   menu12: '菜单1-2',
   menu2: '菜单2',
+  system:'系统',
+  account:'账号',
+  auth:'权限',
+  role:'角色',
 }
 export default zhCN;

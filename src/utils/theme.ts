@@ -3,9 +3,9 @@ export type Theme = | 'default' | 'dark';
 const themeUrl = (theme: Theme) => {
   const antdVersion = '4.3.0'
   if (theme === 'dark') {
-    return `https://cdn.jsdelivr.net/npm/antd@${antdVersion}/dist/antd.dark.css`;
+    return `https://cdn.jsdelivr.net/npm/antd@${antdVersion}/dist/antd.dark.min.css`;
   }
-  return `https://cdn.jsdelivr.net/npm/antd@${antdVersion}/dist/antd.css`;
+  return `https://cdn.jsdelivr.net/npm/antd@${antdVersion}/dist/antd.min.css`;
 }
 
 /**
