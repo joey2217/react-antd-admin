@@ -1,1 +1,1 @@
-export const TOKEN_KEY = 'React-Admin-Request-Token'
+export const TOKEN_KEY = 'react-admin-request-token'
