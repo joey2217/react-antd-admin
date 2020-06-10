@@ -16,6 +16,8 @@ module.exports = (req: NowRequest, res: NowResponse) => {
   } else {
     res.status(403).json({
       message: '无权限!',
+      token,
+      headers:req.headers,
     })
   }
 

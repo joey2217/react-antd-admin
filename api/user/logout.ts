@@ -8,5 +8,6 @@ module.exports = (req: NowRequest, res: NowResponse) => {
     message: '退出成功!',
     date: Random.now('second'),
     token,
+    headers:req.headers,
   })
 };
