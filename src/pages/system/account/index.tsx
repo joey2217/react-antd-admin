@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Tag, Space, Card } from "antd";
 import Search from "../../../components/SearchForm";
-import TableToolbar from "../../../components/TableToolbar";
+import TableToolbar, { TableSize } from "../../../components/TableToolbar";
 
 const { Column } = Table;
 
@@ -14,50 +14,52 @@ const data: any[] | undefined = [
   },
 ];
 
+const columns = [
+  {
+    title: "name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "username",
+    dataIndex: "username",
+    key: "username",
+  },
+  {
+    title: "username",
+    dataIndex: "username",
+    key: "username2",
+  },
+];
+
 const Account = () => {
+  const [size, setSize] = useState<TableSize>("middle");
+  const [currColumns, setCurrColumns] = useState(columns);
+
+  const onColumnsChange = (checkedList: string[]) => {
+    setCurrColumns(
+      columns.filter((column) => checkedList.includes(column.key))
+    );
+  };
+
   return (
     <div>
       <Card>
         <Search
-          fields={[
-            { name: "name", label: "Name" },
-            { name: "name", label: "Name" },
-            { name: "name", label: "Name" },
-            { name: "name", label: "Name" },
-          ]}
+          fields={[{ name: "name", label: "Name" }]}
           onSearch={(v) => console.log(v)}
         />
       </Card>
       <Card>
-        <TableToolbar title="账号"></TableToolbar>
-        <Table dataSource={data}>
-          <Column title="Name" dataIndex="name" />
-          <Column title="username" dataIndex="username" />
-          <Column title="status" dataIndex="status" />
-          <Column
-            title="roles"
-            dataIndex="roles"
-            render={(roles) => (
-              <>
-                {roles.map((role: string) => (
-                  <Tag color="cyan" key={role}>
-                    {role}
-                  </Tag>
-                ))}
-              </>
-            )}
-          />
-          <Column
-            title="Action"
-            key="action"
-            render={(text, record) => (
-              <Space size="middle">
-                <button className="action-button">Edit</button>
-                <button className="action-button">Delete</button>
-              </Space>
-            )}
-          />
-        </Table>
+        <TableToolbar
+          title="账号"
+          size={size}
+          onSizeChange={setSize}
+          onReload={() => {}}
+          columns={columns}
+          onColumnsChange={onColumnsChange}
+        ></TableToolbar>
+        <Table dataSource={data} columns={currColumns} size={size} />
       </Card>
     </div>
   );

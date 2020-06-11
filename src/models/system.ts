@@ -1,3 +1,3 @@
 export interface account{
-  message: string,
+  message: string;
 }
