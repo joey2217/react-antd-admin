@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export const TOKEN_KEY = 'react-admin-request-token'
 
 // Account
@@ -12,11 +10,13 @@ enum Status {
 }
 
 export class Account {
+  id: number;
   username: string;
   account: string;
   status: Status;
   roles: Role[];
-  constructor(username: string, account: string, status: number, roles: Role[]) {
+  constructor(id: number, username: string, account: string, status: number, roles: Role[]) {
+    this.id = id;
     this.username = username;
     this.account = account;
     this.status = status;
