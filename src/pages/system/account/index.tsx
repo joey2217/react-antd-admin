@@ -7,6 +7,7 @@ import TableToolbar, {
 } from "../../../components/TableToolbar";
 import { getAccountList, deleteAccount } from "../../../api/system";
 import { Account as AccountModel, Status, Role } from "../../../models/system";
+import AccountForm from "./AccountForm";
 
 const Account = () => {
   const columns = [
@@ -79,6 +80,7 @@ const Account = () => {
   const [list, setList] = useState<AccountModel[]>([]);
   const [page, setPage] = useState({ pageNum: 1, pageSize: 10 });
   const [search, setSearch] = useState({});
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -129,7 +131,9 @@ const Account = () => {
           onReload={reload}
           columns={columns}
           onColumnsChange={onColumnsChange}
-        ></TableToolbar>
+        >
+          <Button onClick={()=>setShow(true)}>new</Button>
+        </TableToolbar>
         <Table
           loading={loading}
           dataSource={list}
@@ -146,6 +150,7 @@ const Account = () => {
           }}
         />
       </Card>
+      <AccountForm show={show}  onClose={()=>setShow(false)} />
     </div>
   );
 };

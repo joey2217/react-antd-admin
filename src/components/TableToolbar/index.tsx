@@ -56,7 +56,6 @@ const TableToolbar = ({
     <TableToolbarWrapper>
       <div className="title">{title}</div>
       <Space className="right">
-        <Button>new</Button>
         {children}
         <Divider type="vertical" />
         <Dropdown overlay={sizeMenu} trigger={["click"]}>
