@@ -5,7 +5,7 @@ export interface LoginData {
 }
 
 // 用户接口
-export interface IUser {
+export interface User {
   name: string;
   token: string;
   [propName: string]: any;

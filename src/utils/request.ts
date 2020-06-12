@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse,AxiosError } from 'axios'
 import { message } from 'antd';
 import { getToken } from "../utils/auth";
-import {IRequest} from '../models/type'
+import {Response} from '../models/type'
 
 const request: AxiosInstance = axios.create({
   // baseURL,  
@@ -22,9 +22,9 @@ request.interceptors.request.use((config: AxiosRequestConfig) => {
 });
 
 
-request.interceptors.response.use((response: AxiosResponse<IRequest>) => {
+request.interceptors.response.use((response: AxiosResponse<Response>) => {
   return response;
-}, (error:AxiosError<IRequest>) => {
+}, (error:AxiosError<Response>) => {
   console.error(error);
   message.error(error.message || 'Oops,出错了!');
   // if (error.code==='403') {

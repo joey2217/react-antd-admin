@@ -102,7 +102,7 @@ const Search = ({ fields, onSearch, showLabel = false }: SearchProps) => {
   };
 
   const onFinish = (values: any) => {
-    console.log("Finish:", values);
+    onSearch(values);
   };
 
   return (
