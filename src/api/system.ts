@@ -1,7 +1,7 @@
 import { AxiosPromise } from 'axios';
 import request from '../utils/request';
 import { PageParams, ListResponse, Response } from '../models/type';
-import { Account } from '../models/system';
+import Account from '../models/system/Account';
 
 /**
  * Account
@@ -14,18 +14,26 @@ export function getAccountList(params: PageParams): AxiosPromise<ListResponse<Ac
   })
 }
 
-export function deleteAccount(ids: (number|string)[]): AxiosPromise<Response> {
+export function addAccount(account: Account): AxiosPromise<Response> {
+  return request({
+    url: '/api/system/account/add',
+    method: 'PUT',
+    data: account
+  })
+}
+
+export function deleteAccount(ids: (number | string)[]): AxiosPromise<Response> {
   return request({
     url: '/api/system/account/delete',
-    method: 'GET',
+    method: 'DELETE',
     params: { ids: ids.join() },
   })
 }
 
-export function updateAccountList(account: Account): AxiosPromise<Response> {
+export function updateAccount(account: Account): AxiosPromise<Response> {
   return request({
-    url: '/api/system/account/delete',
-    method: 'GET',
+    url: '/api/system/account/update',
+    method: 'PUT',
     data: account
   })
 }

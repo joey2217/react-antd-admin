@@ -15,7 +15,7 @@ const FlexWrapper = styled.div`
   height: 32px;
 `;
 
-type FixedType = |"left" | "right" | undefined;
+type FixedType = "left" | "right" | undefined;
 type ColumnKey = string | number;
 
 export interface Column {
@@ -27,7 +27,7 @@ export interface Column {
 
 export interface ColumnSettingProps {
   columns: Array<Column>;
-  onColumnsChange: (columns:Array<Column>) =>void ;
+  onColumnsChange: (columns: Array<Column>) => void;
 }
 
 const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
@@ -50,7 +50,9 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
     setCheckedList(checkedList);
     setIndeterminate(false);
     setCheckAll(checked);
-    onColumnsChange(columnOptions.filter((column) => checkedList.includes(column.key)));
+    onColumnsChange(
+      columnOptions.filter((column) => checkedList.includes(column.key))
+    );
   };
 
   const onReset = () => {
@@ -81,7 +83,9 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
       !!checkedList.length && checkedList.length < columns.length;
     setIndeterminate(indeterminate);
     setCheckAll(checkedList.length === columns.length);
-    onColumnsChange(columnOptions.filter((column) => checkedList.includes(column.key)));
+    onColumnsChange(
+      columnOptions.filter((column) => checkedList.includes(column.key))
+    );
   };
 
   const onColumnFixedChange = (key: ColumnKey, fixed: FixedType) => {
@@ -89,7 +93,9 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
     const list = [...columnOptions];
     list.splice(index, 1, { ...columnOptions[index], fixed });
     setColumnOptions(list);
-    onColumnsChange(columnOptions.filter((column) => checkedList.includes(column.key)));
+    onColumnsChange(
+      columnOptions.filter((column) => checkedList.includes(column.key))
+    );
   };
   const ColumnSettingContent = () => {
     const fixedLeft = columnOptions.filter((column) => column.fixed === "left");
@@ -109,7 +115,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
           <Typography.Text type="secondary">Fixed the left</Typography.Text>
         )}
         {fixedLeft.map((column: Column) => (
-          <FlexWrapper>
+          <FlexWrapper key={column.key}>
             <Checkbox style={{ marginRight: "auto" }} value={column.key}>
               {column.title}
             </Checkbox>
@@ -132,6 +138,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
         )}
         {noFixed.map((column: Column) => (
           <FlexWrapper
+            key={column.key}
             onMouseEnter={() => {
               setCurrKey(column.key);
             }}
@@ -163,7 +170,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
           <Typography.Text type="secondary">Fixed the right</Typography.Text>
         )}
         {fixedRight.map((column: Column) => (
-          <FlexWrapper>
+          <FlexWrapper key={column.key}>
             <Checkbox value={column.key}>{column.title}</Checkbox>
             <Space>
               <Tooltip title="Fixed Left">

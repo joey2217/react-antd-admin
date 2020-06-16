@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { Random } from "mockjs";
-import { Account, Role } from "../../type";
+import Account, { Role } from "./Account";
 
 module.exports = (request: NowRequest, response: NowResponse) => {
   const { pageNum, pageSize } = request.query;

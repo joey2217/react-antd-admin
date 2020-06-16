@@ -6,10 +6,10 @@ import TableToolbar, {
   Column,
 } from "../../../components/TableToolbar";
 import { getAccountList, deleteAccount } from "../../../api/system";
-import { Account as AccountModel, Status, Role } from "../../../models/system";
-import AccountForm from "./AccountForm";
+import Account, { Status, Role } from "../../../models/system/Account";
+import AccountForm, { Op } from "./AccountForm";
 
-const Account = () => {
+const AccountPage = () => {
   const columns = [
     {
       title: "Username",
@@ -53,16 +53,24 @@ const Account = () => {
     {
       title: "Action",
       key: "action",
-      render: (_: any, record: AccountModel) => (
+      render: (_: any, record: Account) => (
         <Space size="middle">
-          <Button type="link" size="small" onClick={onEdit}>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              setAccountData(record);
+              setOp("update");
+              setShow(true);
+            }}
+          >
             Edit
           </Button>
           <Popconfirm
             title="Are you sure？"
             okText="Yes"
             cancelText="No"
-            onConfirm={() => onDelete(record.id)}
+            onConfirm={() => record.id && onDelete(record.id)}
           >
             <Button type="link" size="small">
               Delete
@@ -77,10 +85,12 @@ const Account = () => {
   const [size, setSize] = useState<TableSize>("middle");
   const [currColumns, setCurrColumns] = useState<Array<Column>>(columns);
   const [total, setTotal] = useState(0);
-  const [list, setList] = useState<AccountModel[]>([]);
+  const [list, setList] = useState<Account[]>([]);
   const [page, setPage] = useState({ pageNum: 1, pageSize: 10 });
   const [search, setSearch] = useState({});
   const [show, setShow] = useState(false);
+  const [accountData, setAccountData] = useState<Account>();
+  const [op, setOp] = useState<Op>("add");
 
   useEffect(() => {
     (async () => {
@@ -99,13 +109,17 @@ const Account = () => {
     })();
   }, [page, search]);
 
+  const onNewClick = () => {
+    setShow(true);
+    setOp("add");
+    setAccountData(new Account("", "", 0, ["admin"]));
+  };
+
   const onColumnsChange = (columns: Array<Column>) => {
     setCurrColumns(columns);
   };
 
   const reload = () => setSearch({ ...search });
-
-  const onEdit = () => setSearch({ ...search });
 
   const onDelete = async (id: string | number) => {
     const {
@@ -132,13 +146,14 @@ const Account = () => {
           columns={columns}
           onColumnsChange={onColumnsChange}
         >
-          <Button onClick={()=>setShow(true)}>new</Button>
+          <Button onClick={onNewClick}>new</Button>
         </TableToolbar>
         <Table
           loading={loading}
           dataSource={list}
           columns={currColumns}
           size={size}
+          rowKey="id"
           pagination={{
             showQuickJumper: true,
             showTotal: (total) => `Total ${total} items`,
@@ -150,8 +165,14 @@ const Account = () => {
           }}
         />
       </Card>
-      <AccountForm show={show}  onClose={()=>setShow(false)} />
+      <AccountForm
+        show={show}
+        op={op}
+        accountData={accountData}
+        onClose={() => setShow(false)}
+        refresh={reload}
+      />
     </div>
   );
 };
-export default Account;
+export default AccountPage;

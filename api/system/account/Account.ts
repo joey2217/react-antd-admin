@@ -1,17 +1,17 @@
 export type Role = | "admin" | "user"
 
-export enum Status {
+enum Status {
   DISABLED,
   ENABLED,
 }
 
-export class Account {
-  id: number | string;
+export default class Account {
+  id: number;
   username: string;
   account: string;
   status: Status;
   roles: Role[];
-  constructor(id: string | number, username: string, account: string, status: number, roles: Role[]) {
+  constructor(id: number, username: string, account: string, status: number, roles: Role[]) {
     this.id = id;
     this.username = username;
     this.account = account;
