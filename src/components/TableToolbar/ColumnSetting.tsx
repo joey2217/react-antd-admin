@@ -32,17 +32,16 @@ export interface ColumnSettingProps {
 
 const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
   const allCheckedList = Array.from(columns, (column) => column.key);
+  const defaultColumns = Array.from(columns, (column) => ({
+    fixed: undefined,
+    ...column,
+  }));
 
   const [indeterminate, setIndeterminate] = useState(false);
   const [checkAll, setCheckAll] = useState(true);
   const [checkedList, setCheckedList] = useState(allCheckedList);
   const [currKey, setCurrKey] = useState<ColumnKey>("");
-  const [columnOptions, setColumnOptions] = useState<Column[]>(
-    Array.from(columns, (column) => ({
-      fixed: undefined,
-      ...column,
-    }))
-  );
+  const [columnOptions, setColumnOptions] = useState<Column[]>(defaultColumns);
 
   const onCheckAllChange = (e: CheckboxChangeEvent) => {
     const checked = e.target.checked;
@@ -59,6 +58,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
     setCheckedList(allCheckedList);
     setIndeterminate(false);
     setCheckAll(true);
+    setColumnOptions(defaultColumns);
     onColumnsChange(columns);
   };
 
@@ -89,13 +89,16 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
   };
 
   const onColumnFixedChange = (key: ColumnKey, fixed: FixedType) => {
-    const index = columnOptions.findIndex((column) => column.key === key);
     const list = [...columnOptions];
-    list.splice(index, 1, { ...columnOptions[index], fixed });
+    const index = columns.findIndex((column) => column.key === key);
+    const column = { ...columns[index], fixed };
+    console.log(column, index);
+    list.splice(index, 1, column);
     setColumnOptions(list);
-    onColumnsChange(
-      columnOptions.filter((column) => checkedList.includes(column.key))
-    );
+    const fixedLeft = list.filter((column) => column.fixed === "left");
+    const fixedRight = list.filter((column) => column.fixed === "right");
+    const noFixed = list.filter((column) => column.fixed === undefined);
+    onColumnsChange([...fixedLeft, ...noFixed, ...fixedRight]);
   };
   const ColumnSettingContent = () => {
     const fixedLeft = columnOptions.filter((column) => column.fixed === "left");

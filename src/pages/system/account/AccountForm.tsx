@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Modal, Form, Input, Select,message } from "antd";
+import React, { useEffect } from "react";
+import { Modal, Form, Input, Select, message } from "antd";
 import Account from "../../../models/system/Account";
 import { addAccount, updateAccount } from "../../../api/system";
 
@@ -20,26 +20,28 @@ const layout = {
   wrapperCol: { span: 19 },
 };
 
-const AccountForm = ({ show, onClose, accountData, op,refresh  }: Props) => {
+const AccountForm = ({ show, onClose, accountData, op, refresh }: Props) => {
   const [form] = Form.useForm();
-
-  const [initialValues, setInitialValues] = useState<Account>();
 
   useEffect(() => {
     if (accountData) {
-      setInitialValues(accountData);
+      form.setFieldsValue(accountData);
     }
-  }, [accountData]);
+  }, [accountData, form]);
 
   const onOK = async () => {
     try {
       const values: any = await form.validateFields();
       if (op === "add") {
-        const {data:{message:msg}}=await addAccount(values);
-        message.success(msg)
-      }else if (op === "update") {
-        const {data:{message:msg}} =await updateAccount(values);
-        message.success(msg)
+        const {
+          data: { message: msg },
+        } = await addAccount(values);
+        message.success(msg);
+      } else if (op === "update") {
+        const {
+          data: { message: msg },
+        } = await updateAccount(values);
+        message.success(msg);
       }
       onClose();
       refresh();
@@ -50,7 +52,7 @@ const AccountForm = ({ show, onClose, accountData, op,refresh  }: Props) => {
 
   return (
     <Modal title="AccountForm" visible={show} onOk={onOK} onCancel={onClose}>
-      <Form name="basic" form={form} initialValues={initialValues} {...layout}>
+      <Form name="basic" form={form} {...layout}>
         <Form.Item
           label="Username"
           name="username"

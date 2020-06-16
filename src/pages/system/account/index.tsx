@@ -15,16 +15,29 @@ const AccountPage = () => {
       title: "Username",
       dataIndex: "username",
       key: "username",
+      sorter: (a: Account, b: Account) => a.username.length - b.username.length,
     },
     {
       title: "Account",
       dataIndex: "account",
       key: "account",
+      sorter: (a: Account, b: Account) => a.username.length - b.username.length,
     },
     {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      filters: [
+        {
+          text: "DISABLED",
+          value: 0,
+        },
+        {
+          text: "ENABLED",
+          value: 1,
+        },
+      ],
+      onFilter: (value: number, record: Account) => record.status === value,
       render: (status: Status) => {
         if (status === 0) {
           return <span style={{ color: "#f5222d" }}>Disabled</span>;
@@ -37,6 +50,17 @@ const AccountPage = () => {
       title: "Roles",
       dataIndex: "roles",
       key: "roles",
+      filters: [
+        {
+          text: "Admin",
+          value: "admin",
+        },
+        {
+          text: "User",
+          value: "user",
+        },
+      ],
+      onFilter: (value: Role, record: Account) => record.roles.includes(value),
       render: (roles: Role[]) => (
         <>
           {roles.map((role) => {
@@ -59,9 +83,9 @@ const AccountPage = () => {
             type="link"
             size="small"
             onClick={() => {
-              setAccountData(record);
               setOp("update");
               setShow(true);
+              setAccountData(record);
             }}
           >
             Edit
@@ -70,7 +94,7 @@ const AccountPage = () => {
             title="Are you sure？"
             okText="Yes"
             cancelText="No"
-            onConfirm={() => record.id && onDelete(record.id)}
+            onConfirm={() => record.id && onDelete([record.id])}
           >
             <Button type="link" size="small">
               Delete
@@ -91,6 +115,7 @@ const AccountPage = () => {
   const [show, setShow] = useState(false);
   const [accountData, setAccountData] = useState<Account>();
   const [op, setOp] = useState<Op>("add");
+  const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -121,10 +146,13 @@ const AccountPage = () => {
 
   const reload = () => setSearch({ ...search });
 
-  const onDelete = async (id: string | number) => {
+  const onDelete = async (ids: (string | number)[]) => {
     const {
       data: { message: msg },
-    } = await deleteAccount([id]);
+    } = await deleteAccount(ids);
+    if (selectedRowKeys.length > 0) {
+      setSelectedRowKeys([]);
+    }
     message.success(msg);
     reload();
   };
@@ -133,7 +161,10 @@ const AccountPage = () => {
     <div>
       <Card>
         <Search
-          fields={[{ name: "name", label: "Name" }]}
+          fields={[
+            { name: "username", label: "Username" },
+            { name: "account", label: "Account" },
+          ]}
           onSearch={(v) => setSearch({ ...v })}
         />
       </Card>
@@ -146,7 +177,12 @@ const AccountPage = () => {
           columns={columns}
           onColumnsChange={onColumnsChange}
         >
-          <Button onClick={onNewClick}>new</Button>
+          <Button onClick={onNewClick}>NewAccount</Button>
+          {selectedRowKeys.length > 0 && (
+            <Button onClick={() => onDelete(selectedRowKeys)}>
+              Delete {selectedRowKeys.length} accounts
+            </Button>
+          )}
         </TableToolbar>
         <Table
           loading={loading}
@@ -154,6 +190,11 @@ const AccountPage = () => {
           columns={currColumns}
           size={size}
           rowKey="id"
+          rowSelection={{
+            onChange: (selectedRowKeys) => {
+              setSelectedRowKeys(selectedRowKeys as number[]);
+            },
+          }}
           pagination={{
             showQuickJumper: true,
             showTotal: (total) => `Total ${total} items`,
