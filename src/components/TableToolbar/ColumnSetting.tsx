@@ -44,10 +44,9 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
   const [columnOptions, setColumnOptions] = useState<Column[]>(defaultColumns);
 
   const getColumns = (list: Column[]) => {
-    const columns = list.filter((column) => checkedList.includes(column.key));
-    const fixedLeft = columns.filter((column) => column.fixed === "left");
-    const fixedRight = columns.filter((column) => column.fixed === "right");
-    const noFixed = columns.filter((column) => column.fixed === undefined);
+    const fixedLeft = list.filter((column) => column.fixed === "left");
+    const fixedRight = list.filter((column) => column.fixed === "right");
+    const noFixed = list.filter((column) => column.fixed === undefined);
     return [...fixedLeft, ...noFixed, ...fixedRight];
   };
 
@@ -86,14 +85,14 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
     </FlexWrapper>
   );
 
-  const onChange = (checkedList: (string | number)[]) => {
-    setCheckedList(checkedList);
+  const onChange = (checkedValueList: (string | number)[]) => {
+    setCheckedList(checkedValueList);
     const indeterminate =
-      !!checkedList.length && checkedList.length < columns.length;
+      !!checkedValueList.length && checkedValueList.length < columns.length;
     setIndeterminate(indeterminate);
-    setCheckAll(checkedList.length === columns.length);
+    setCheckAll(checkedValueList.length === columns.length);
     const list = columnOptions.filter((column) =>
-      checkedList.includes(column.key)
+      checkedValueList.includes(column.key)
     );
     onColumnsChange(getColumns(list));
   };

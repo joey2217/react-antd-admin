@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Table, Space, Button, Popconfirm } from "antd";
+import Auth from "../../../models/system/Auth";
+import { getAuthList } from "../../../api/system";
+import TableToolbar, {
+  TableSize,
+  Column,
+} from "../../../components/TableToolbar";
 
-const data: any[] | undefined = [
-  
-];
-
-const Auth = () => {
+const AuthPage = () => {
   const columns = [
     {
       title: "Name",
@@ -20,7 +22,8 @@ const Auth = () => {
     {
       title: "Action",
       key: "action",
-      render: (_: any, record: Account) => (
+      width: "100px",
+      render: (_: any, record: Auth) => (
         <Space size="middle">
           <Button type="link" size="small" onClick={() => {}}>
             Edit
@@ -39,12 +42,56 @@ const Auth = () => {
       ),
     },
   ];
+
+  const [list, setList] = useState<Auth[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [size, setSize] = useState<TableSize>("middle");
+  const [currColumns, setCurrColumns] = useState<Array<Column>>(columns);
+
+  useEffect(() => {
+    getListData();
+  }, []);
+
+  const getListData = async () => {
+    try {
+      setLoading(true);
+      const {
+        data: { list },
+      } = await getAuthList();
+      setList(list);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onNewClick = () => {};
+
+  const onColumnsChange = (columns: Array<Column>) => {
+    setCurrColumns(columns);
+  };
+
   return (
-    <>
-      <Card>
-        <Table columns={columns} dataSource={data} pagination={false} />
-      </Card>
-    </>
+    <Card>
+      <TableToolbar
+        title="AuthList"
+        size={size}
+        onSizeChange={setSize}
+        onReload={() => getListData()}
+        columns={columns}
+        onColumnsChange={onColumnsChange}
+      >
+        <Button onClick={onNewClick}>NewAuth</Button>
+      </TableToolbar>
+      <Table
+        loading={loading}
+        columns={currColumns}
+        rowKey="id"
+        dataSource={list}
+        pagination={false}
+      />
+    </Card>
   );
 };
-export default Auth;
+export default AuthPage;
