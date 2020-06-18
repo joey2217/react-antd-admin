@@ -43,15 +43,24 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
   const [currKey, setCurrKey] = useState<ColumnKey>("");
   const [columnOptions, setColumnOptions] = useState<Column[]>(defaultColumns);
 
+  const getColumns = (list: Column[]) => {
+    const columns = list.filter((column) => checkedList.includes(column.key));
+    const fixedLeft = columns.filter((column) => column.fixed === "left");
+    const fixedRight = columns.filter((column) => column.fixed === "right");
+    const noFixed = columns.filter((column) => column.fixed === undefined);
+    return [...fixedLeft, ...noFixed, ...fixedRight];
+  };
+
   const onCheckAllChange = (e: CheckboxChangeEvent) => {
     const checked = e.target.checked;
     const checkedList = checked ? allCheckedList : [];
     setCheckedList(checkedList);
     setIndeterminate(false);
     setCheckAll(checked);
-    onColumnsChange(
-      columnOptions.filter((column) => checkedList.includes(column.key))
+    const list = columnOptions.filter((column) =>
+      checkedList.includes(column.key)
     );
+    onColumnsChange(getColumns(list));
   };
 
   const onReset = () => {
@@ -83,9 +92,10 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
       !!checkedList.length && checkedList.length < columns.length;
     setIndeterminate(indeterminate);
     setCheckAll(checkedList.length === columns.length);
-    onColumnsChange(
-      columnOptions.filter((column) => checkedList.includes(column.key))
+    const list = columnOptions.filter((column) =>
+      checkedList.includes(column.key)
     );
+    onColumnsChange(getColumns(list));
   };
 
   const onColumnFixedChange = (key: ColumnKey, fixed: FixedType) => {
@@ -95,10 +105,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
     console.log(column, index);
     list.splice(index, 1, column);
     setColumnOptions(list);
-    const fixedLeft = list.filter((column) => column.fixed === "left");
-    const fixedRight = list.filter((column) => column.fixed === "right");
-    const noFixed = list.filter((column) => column.fixed === undefined);
-    onColumnsChange([...fixedLeft, ...noFixed, ...fixedRight]);
+    onColumnsChange(getColumns(list));
   };
   const ColumnSettingContent = () => {
     const fixedLeft = columnOptions.filter((column) => column.fixed === "left");
@@ -156,7 +163,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
               <Space>
                 <Tooltip title="Fixed Left">
                   <PushpinOutlined
-                    style={{ transform: "rotate(-90deg)" }}
+                    rotate={-90}
                     onClick={() => onColumnFixedChange(column.key, "left")}
                   />
                 </Tooltip>
@@ -178,7 +185,7 @@ const ColumnSetting = ({ columns, onColumnsChange }: ColumnSettingProps) => {
             <Space>
               <Tooltip title="Fixed Left">
                 <PushpinOutlined
-                  style={{ transform: "rotate(-90deg)" }}
+                  rotate={-90}
                   onClick={() => onColumnFixedChange(column.key, "left")}
                 />
               </Tooltip>
