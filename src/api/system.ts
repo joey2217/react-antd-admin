@@ -16,7 +16,7 @@ export function getAccountList(params: PageParams): AxiosPromise<ListResponse<Ac
 
 export function addAccount(account: Account): AxiosPromise<Response> {
   return request({
-    url: '/api/system/account/add',
+    url: '/api/common/add',
     method: 'PUT',
     data: account
   })
@@ -24,7 +24,7 @@ export function addAccount(account: Account): AxiosPromise<Response> {
 
 export function deleteAccount(ids: (number | string)[]): AxiosPromise<Response> {
   return request({
-    url: '/api/system/account/delete',
+    url: '/api/common/delete',
     method: 'DELETE',
     params: { ids: ids.join() },
   })
@@ -32,7 +32,7 @@ export function deleteAccount(ids: (number | string)[]): AxiosPromise<Response> 
 
 export function updateAccount(account: Account): AxiosPromise<Response> {
   return request({
-    url: '/api/system/account/update',
+    url: '/api/common/update',
     method: 'PUT',
     data: account
   })

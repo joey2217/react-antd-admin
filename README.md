@@ -36,3 +36,7 @@ const {formatMessage:f} =useIntl();
 ### 优点
 
 - 开发,线上(必须使用该服务)可同时使用
+
+### Tip
+
+- No more than 12 Serverless Functions can be added to a Deployment on the Hobby plan. Create a team (Pro plan) to deploy more.

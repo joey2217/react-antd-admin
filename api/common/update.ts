@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { Random } from "mockjs";
-import { TOKEN_KEY } from '../../type'
+import { TOKEN_KEY } from '../type'
 
 module.exports = (request: NowRequest, response: NowResponse) => {
   const { id } = request.body;
