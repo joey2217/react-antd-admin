@@ -11,6 +11,7 @@ import {
   FormOutlined,
   MenuOutlined,
   SettingOutlined,
+  HighlightOutlined,
 } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 
@@ -59,6 +60,21 @@ const menuList: Array<MenuProps> = [
       {
         path: "/system/role",
         title: "role",
+      },
+    ]
+  },
+  {
+    path: "/editor",
+    title: "editor",
+    icon:<HighlightOutlined />,
+    children:[
+      {
+        path: "/editor/flow",
+        title: "flow",
+      },
+      {
+        path: "/editor/mind",
+        title: "mind",
       },
     ]
   },

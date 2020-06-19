@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import Layout from "./layout";
 import Login from "./pages/login";
-import NotFound from "./components/Exception/NotFound";
+import Exception from "./pages/exception";
 
 import { useStore } from './store'
 import IntlWrapper from './language/index';
@@ -25,13 +25,8 @@ function App() {
         <Switch>
           <Route path="/" exact render={() => <Redirect to="/home" />} />
           <Route path="/login" component={Login} />
-          <Route path="/home" component={Layout} />
-          <Route path="/table" component={Layout} />
-          <Route path="/form" component={Layout} />
-          <Route path="/menu" component={Layout} />
-          <Route path="/system" component={Layout} />
-          <Route path="/exception" component={Layout} />
-          <Route component={NotFound} />
+          <Route path="/exception/:code" component={Exception} />
+          <Route component={Layout} />
         </Switch>
       </BrowserRouter>
     </IntlWrapper>

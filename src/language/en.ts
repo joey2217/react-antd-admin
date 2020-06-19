@@ -28,5 +28,9 @@ const en = {
   account:'Account',
   auth:'Auth',
   role:'Role',
+  editor:'Graphic Editor',
+  flow:'Flow Editor',
+  mind:'Mind Editor',
+  koni:'Koni Editor',
 }    
 export default en;

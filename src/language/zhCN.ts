@@ -28,5 +28,9 @@ const zhCN = {
   account:'账号',
   auth:'权限',
   role:'角色',
+  editor:'图形编辑器',
+  flow:'流程编辑器',
+  mind:'脑图编辑器',
+  koni:'拓扑编辑器',
 }
 export default zhCN;

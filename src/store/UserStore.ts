@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 import { LoginData } from '../models/user'
 import { login, getUserInfo, logout } from '../api/user'
-import { getToken, setToken,removeToken } from '../utils/auth'
+import { getToken, setToken, removeToken } from '../utils/auth'
 
 export default class CountStore {
 
@@ -32,7 +32,7 @@ export default class CountStore {
   @action.bound
   async getUserInfo() {
     try {
-      const { data: { name, avatar, message,userId} } = await getUserInfo();
+      const { data: { name, avatar, message, userId } } = await getUserInfo();
       this.username = name;
       this.avatar = avatar;
       this.userId = userId;
@@ -44,7 +44,7 @@ export default class CountStore {
 
   // custom authority validate 
   @action.bound
-  validateAuth(path: string) {
+  validateAuth(path: string | string[] | undefined) {
     if (path && this.accessToken) {
       return true;
     }

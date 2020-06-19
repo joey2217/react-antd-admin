@@ -1,18 +1,18 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect,RouteProps } from "react-router-dom";
 
 import { useStore } from "../../store";
 
-const AuthRoute = ({ component: Component, path, ...rest }: any) => {
+const AuthRoute = ({  path, ...rest }: RouteProps) => {
   const {
     userStore: { validateAuth },
   } = useStore();
   return validateAuth(path) ? (
-    <Route {...rest} component={Component} />
+    <Route {...rest} />
   ) : (
     <Redirect
       to={{
-        pathname: "/login",
+        pathname: "/exception/403",
         state: { ref: path },
       }}
     />
