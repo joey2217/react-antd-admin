@@ -10,6 +10,8 @@ const layout = {
   },
 };
 const validateMessages = {
+  
+  /* eslint-disable no-template-curly-in-string */
   required: "${label} is required!",
   types: {
     email: "${label} is not validate email!",
