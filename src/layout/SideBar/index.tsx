@@ -12,6 +12,7 @@ import {
   MenuOutlined,
   SettingOutlined,
   HighlightOutlined,
+  LineChartOutlined,
 } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 
@@ -24,7 +25,7 @@ const { useBreakpoint } = Grid;
 interface MenuProps {
   path: string;
   title: string;
-  icon?: React.ReactNode|string;
+  icon?: React.ReactNode | string;
   children?: Array<MenuProps>;
 }
 
@@ -47,8 +48,8 @@ const menuList: Array<MenuProps> = [
   {
     path: "/system",
     title: "system",
-    icon:<SettingOutlined />,
-    children:[
+    icon: <SettingOutlined />,
+    children: [
       {
         path: "/system/account",
         title: "account",
@@ -61,13 +62,13 @@ const menuList: Array<MenuProps> = [
         path: "/system/role",
         title: "role",
       },
-    ]
+    ],
   },
   {
     path: "/editor",
     title: "editor",
-    icon:<HighlightOutlined />,
-    children:[
+    icon: <HighlightOutlined />,
+    children: [
       {
         path: "/editor/flow",
         title: "flow",
@@ -76,29 +77,44 @@ const menuList: Array<MenuProps> = [
         path: "/editor/mind",
         title: "mind",
       },
-    ]
+    ],
   },
   {
-    path: "/menu",
-    title: "menu",
+    path: "/charts",
+    title: "charts",
+    icon: <LineChartOutlined />,
+    children: [
+      {
+        path: "/charts/line",
+        title: "lineCharts",
+      },
+      {
+        path: "/charts/common",
+        title: "commonCharts",
+      },
+    ],
+  },
+  {
+    path: "/nested-menu",
+    title: "nestedMenu",
     icon: <MenuOutlined />,
     children: [
       {
-        path: "/menu/menu1",
+        path: "/nested-menu/menu1",
         title: "menu1",
         children: [
           {
-            path: "/menu/menu1/menu1-1",
+            path: "/nested-menu/menu1/menu1-1",
             title: "menu11",
           },
           {
-            path: "/menu/menu1/menu1-2",
+            path: "/nested-menu/menu1/menu1-2",
             title: "menu12",
           },
         ],
       },
       {
-        path: "/menu/menu2",
+        path: "/nested-menu/menu2",
         title: "menu2",
       },
     ],

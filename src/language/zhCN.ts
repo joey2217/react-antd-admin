@@ -19,7 +19,7 @@ const zhCN = {
   // menu
   table: '表格',
   form: '表单',
-  menu: '菜单',
+  nestedMenu:'嵌套菜单',
   menu1: '菜单1',
   menu11: '菜单1-1',
   menu12: '菜单1-2',
@@ -32,5 +32,8 @@ const zhCN = {
   flow:'流程编辑器',
   mind:'脑图编辑器',
   koni:'拓扑编辑器',
+  charts:'图表',
+  lineCharts:'折线图',
+  commonCharts:'常用图表',
 }
 export default zhCN;

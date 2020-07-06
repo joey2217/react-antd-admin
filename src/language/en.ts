@@ -19,7 +19,7 @@ const en = {
   // menu
   table:'Table',
   form:'Form',
-  menu:'Menu',
+  nestedMenu:'NestedMenu',
   menu1:'Menu1',
   menu11:'Menu1-1',
   menu12:'Menu1-2',
@@ -32,5 +32,8 @@ const en = {
   flow:'Flow Editor',
   mind:'Mind Editor',
   koni:'Koni Editor',
+  charts:'Charts',
+  lineCharts:'LineCharts',
+  commonCharts:'CommonCharts',
 }    
 export default en;

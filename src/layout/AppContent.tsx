@@ -16,7 +16,7 @@ const AppContent = () => {
           <AuthRoute path="/home" component={lazy(() => import("../pages/home"))} />
           <AuthRoute path="/form" component={lazy(() => import("../pages/form"))} />
           <AuthRoute path="/table" component={lazy(() => import("../pages/table"))} />
-          <AuthRoute path="/menu*" component={lazy(() => import("../pages/menu"))} />
+          <AuthRoute path="/nested-menu*" component={lazy(() => import("../pages/menu"))} />
           {/* system */}
           <AuthRoute path="/system/account" component={lazy(() => import("../pages/system/account"))} />
           <AuthRoute path="/system/auth" component={lazy(() => import("../pages/system/auth"))} />
@@ -35,6 +35,8 @@ const AppContent = () => {
           {/* editor */}
           <AuthRoute path="/editor/flow" component={lazy(()=>import('../pages/editor/flow'))} />
           <AuthRoute path="/editor/mind" component={lazy(()=>import('../pages/editor/mind'))} />
+          <AuthRoute path="/charts/line" component={lazy(()=>import('../pages/charts/line'))} />
+          <AuthRoute path="/charts/common" component={lazy(()=>import('../pages/charts/common'))} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
