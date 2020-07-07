@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Typography, DatePicker } from "antd";
 import { observer } from "mobx-react";
 import { useIntl } from "react-intl";
 
 import { useStore } from "../../store";
-import { test } from "../../api/system";
 
 const { Title } = Typography;
 
@@ -15,17 +14,6 @@ const Home = () => {
     userStore: { username },
     appStore: { lang },
   } = useStore();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await test();
-        console.log(res);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
 
   return (
     <div>

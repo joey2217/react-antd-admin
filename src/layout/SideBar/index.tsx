@@ -13,6 +13,7 @@ import {
   SettingOutlined,
   HighlightOutlined,
   LineChartOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import { useIntl } from "react-intl";
 
@@ -25,7 +26,7 @@ const { useBreakpoint } = Grid;
 interface MenuProps {
   path: string;
   title: string;
-  icon?: React.ReactNode | string;
+  icon?: any;
   children?: Array<MenuProps>;
 }
 
@@ -33,22 +34,22 @@ const menuList: Array<MenuProps> = [
   {
     path: "/home",
     title: "home",
-    icon: <DashboardOutlined />,
+    icon: DashboardOutlined,
   },
   {
     path: "/table",
     title: "table",
-    icon: <TableOutlined />,
+    icon: TableOutlined,
   },
   {
     path: "/form",
     title: "form",
-    icon: <FormOutlined />,
+    icon: FormOutlined,
   },
   {
     path: "/system",
     title: "system",
-    icon: <SettingOutlined />,
+    icon: SettingOutlined,
     children: [
       {
         path: "/system/account",
@@ -67,7 +68,7 @@ const menuList: Array<MenuProps> = [
   {
     path: "/editor",
     title: "editor",
-    icon: <HighlightOutlined />,
+    icon: HighlightOutlined,
     children: [
       {
         path: "/editor/flow",
@@ -82,7 +83,7 @@ const menuList: Array<MenuProps> = [
   {
     path: "/charts",
     title: "charts",
-    icon: <LineChartOutlined />,
+    icon: LineChartOutlined,
     children: [
       {
         path: "/charts/line",
@@ -95,9 +96,24 @@ const menuList: Array<MenuProps> = [
     ],
   },
   {
+    path: "/text-editor",
+    title: "textEditor",
+    icon: EditOutlined,
+    children: [
+      {
+        path: "/text-editor/markdown",
+        title: "markdown",
+      },
+      {
+        path: "/text-editor/rich-text",
+        title: "richText",
+      },
+    ],
+  },
+  {
     path: "/nested-menu",
     title: "nestedMenu",
-    icon: <MenuOutlined />,
+    icon: MenuOutlined,
     children: [
       {
         path: "/nested-menu/menu1",
@@ -148,7 +164,7 @@ const Sidebar = () => {
           <SubMenu
             title={f({ id: item.title })}
             key={item.path}
-            icon={item.icon}
+            icon={item.icon && React.createElement(item.icon)}
           >
             {renderMenu(item.children)}
           </SubMenu>
@@ -159,7 +175,7 @@ const Sidebar = () => {
           {...item}
           title={f({ id: item.title })}
           key={item.path}
-          icon={item.icon}
+          icon={item.icon && React.createElement(item.icon)}
         >
           <Link to={item.path}>{f({ id: item.title })}</Link>
         </Menu.Item>

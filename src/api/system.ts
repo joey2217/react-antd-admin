@@ -72,11 +72,3 @@ export function updateAuth(auth: Auth): AxiosPromise<Response> {
     data: auth
   })
 }
-
-
-export function test(): AxiosPromise<Response> {
-  return request({
-    url: '/api/test',
-    method: 'GET',
-  })
-}

@@ -37,6 +37,8 @@ const AppContent = () => {
           <AuthRoute path="/editor/mind" component={lazy(()=>import('../pages/editor/mind'))} />
           <AuthRoute path="/charts/line" component={lazy(()=>import('../pages/charts/line'))} />
           <AuthRoute path="/charts/common" component={lazy(()=>import('../pages/charts/common'))} />
+          <AuthRoute path="/text-editor/markdown" component={lazy(()=>import('../pages/text-editor/markdown'))} />
+          <AuthRoute path="/text-editor/rich-text" component={lazy(()=>import('../pages/text-editor/rich-text'))} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>

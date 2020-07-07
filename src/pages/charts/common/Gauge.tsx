@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Gauge } from "@ant-design/charts";
 import { Card } from "antd";
 import { useStore } from "../../../store";

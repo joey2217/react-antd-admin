@@ -1,8 +1,14 @@
 import React from "react";
 import { Liquid } from "@ant-design/charts";
 import { Card } from "antd";
+import { useStore } from "../../../store";
+import { observer } from "mobx-react";
 
 const DemoLiquid: React.FC = () => {
+  const {
+    appStore: { theme },
+  } = useStore();
+  
   const config = {
     title: {
       visible: true,
@@ -11,6 +17,10 @@ const DemoLiquid: React.FC = () => {
     description: {
       visible: true,
       text: "水波图 - 百分比显示",
+      style: {
+        fontSize: 18,
+        fill: theme === "default" ? "black" : "#fff",
+      },
     },
     min: 0,
     max: 10000,
@@ -26,4 +36,4 @@ const DemoLiquid: React.FC = () => {
   );
 };
 
-export default DemoLiquid;
+export default observer(DemoLiquid);

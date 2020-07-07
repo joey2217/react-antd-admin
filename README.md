@@ -42,3 +42,17 @@ const {formatMessage:f} =useIntl();
 - No more than 12 Serverless Functions can be added to a Deployment on the Hobby plan. Create a team (Pro plan) to deploy more.
 
 ## [GGEditor](https://github.com/gaoli/GGEditor)-可视化图编辑器
+
+## [Ant Design Charts](https://charts.ant.design/) React 图表库
+
+## TextEditor
+
+### Markdown
+
+- [react-markdown](http://rexxars.github.io/react-markdown/)
+
+### RichText
+
+- [Braft Editor](https://braft.margox.cn/)
+
+- [react-quill](https://zenoamaro.github.io/react-quill/)

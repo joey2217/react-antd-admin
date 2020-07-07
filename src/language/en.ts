@@ -35,5 +35,8 @@ const en = {
   charts:'Charts',
   lineCharts:'LineCharts',
   commonCharts:'CommonCharts',
+  textEditor:'TextEditor',
+  markdown:'Markdown',
+  richText:'RichText',
 }    
 export default en;

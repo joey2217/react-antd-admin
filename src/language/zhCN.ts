@@ -35,5 +35,8 @@ const zhCN = {
   charts:'图表',
   lineCharts:'折线图',
   commonCharts:'常用图表',
+  textEditor:'文本编辑器',
+  markdown:'Markdown',
+  richText:'富文本',
 }
 export default zhCN;
