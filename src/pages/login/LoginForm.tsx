@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
@@ -17,6 +17,14 @@ const LoginForm = () => {
   } = useStore();
 
   const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    form.setFieldsValue({
+      username: "Hello",
+      password: "World",
+    });
+  }, []);
 
   const onFinish = async (loginData: any) => {
     try {
@@ -35,7 +43,12 @@ const LoginForm = () => {
   };
 
   return (
-    <Form name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
+    <Form
+      name="basic"
+      form={form}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
       <Form.Item
         name="username"
         rules={[{ required: true, message: f({ id: "usernameMessage" }) }]}

@@ -3,7 +3,11 @@ import { Avatar, Menu, Dropdown, message } from "antd";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { HomeOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+  GithubOutlined,
+  HomeOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import { useIntl } from "react-intl";
 
 import { useStore } from "../../store";
@@ -34,6 +38,17 @@ const UserAvatar = () => {
         <Link to="/home" style={{ display: "inline-block" }}>
           {f({ id: "home" })}
         </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item>
+        <GithubOutlined />
+        <a
+          href="https://github.com/BurNing1993/react-antd-admin"
+          target="_blank"
+          style={{ display: "inline-block" }}
+        >
+          <span>Github</span>
+        </a>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item onClick={userLogout}>
