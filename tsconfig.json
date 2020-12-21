@@ -6,7 +6,7 @@
       "dom",
       "dom.iterable",
       "esnext",
-      "esnext.intl", 
+      "esnext.intl",
       "es2017.intl",
       "es2018.intl"
     ],
@@ -22,6 +22,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"

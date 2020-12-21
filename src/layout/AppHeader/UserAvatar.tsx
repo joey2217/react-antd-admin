@@ -46,6 +46,7 @@ const UserAvatar = () => {
           href="https://github.com/BurNing1993/react-antd-admin"
           target="_blank"
           style={{ display: "inline-block" }}
+          rel="noopener noreferrer"
         >
           <span>Github</span>
         </a>
