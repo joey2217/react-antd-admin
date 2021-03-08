@@ -6,12 +6,12 @@ export interface CommonResponse {
 export interface PageParams {
   pageNum?: number;
   pageSize?: number;
-  [propName: string]: any;
+  [prop: string]: any;
 }
 
 export interface ListResponse<T> {
   message: string;
   total: number;
-  list: Array<T>;
-  [propName: string]: any;
+  list: T[];
+  [prop: string]: any;
 }
