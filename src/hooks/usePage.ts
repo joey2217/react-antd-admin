@@ -23,37 +23,31 @@ export function usePage<T>(
   const [dataSource, setDataSource] = useState<T[]>([]);
   const [total, setTotal] = useState(0);
 
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const { list, total: totalNumber } = await getPageData(page);
-      setDataSource(list);
-      setTotal(totalNumber);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    getData();
-    // eslint-disable-next-line
-  }, []);
+    (async () => {
+      try {
+        setLoading(true);
+        const { list, total: totalNumber } = await getPageData(page);
+        setDataSource(list);
+        setTotal(totalNumber);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [page]);
 
   const onReset = () => {
-    page.page = 1;
-    getData();
+    setPage({ page: 1, size: page.size });
   };
 
   const onChange = (page: number, pageSize: number) => {
-    setPage({ page, size: Number(pageSize) });
-    getData();
+    setPage({ page, size: pageSize });
   };
 
   const onShowSizeChange = (current: number, size: number) => {
     setPage({ page: current, size });
-    getData();
   };
 
   return {
