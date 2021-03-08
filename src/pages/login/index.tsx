@@ -1,16 +1,18 @@
 import React from "react";
 import { Card, Row, Col } from "antd";
-import LoginForm from "./LoginForm";
 import { useIntl } from "react-intl";
-import LangDropdown from "../../layout/AppHeader/LangDropdown";
+import LoginForm from "./LoginForm";
+import LangDropdown from "../../layout/Header/LangDropdown";
 
-import "./style.css";
-
-const Login = () => {
+const Login: React.FC = () => {
   const { formatMessage: f } = useIntl();
 
   return (
-    <Row id="login-container" align="middle" justify="center">
+    <Row
+      align="middle"
+      justify="center"
+      className="h-screen pb-20 bg-gradient-to-r from-indigo-400 via-green-500 to-blue-400"
+    >
       <Col xs={24} sm={16} md={14} lg={12} xl={6}>
         <Card
           className="login-card"

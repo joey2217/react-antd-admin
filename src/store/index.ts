@@ -1,14 +1,16 @@
-import { createContext, useContext } from 'react';
-import UserStore from './UserStore';
-import AppStore from './AppStore';
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import thunk from "redux-thunk";
+import userReducer from "./user/reducer";
+import appReducer from "./app/reducer";
 
-const store = {
-  userStore: new UserStore(),
-  appStore: new AppStore(),
+const rootReducer = combineReducers({
+  user: userReducer,
+  app: appReducer,
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default function configStore() {
+  const store = createStore(rootReducer, applyMiddleware(thunk));
+  return store;
 }
-
-const storeContext = createContext(store);
-
-export const useStore = () => useContext(storeContext);
-
-export default store;

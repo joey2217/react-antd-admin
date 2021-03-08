@@ -1,19 +1,18 @@
 import React from "react";
 import { Typography, DatePicker } from "antd";
-import { observer } from "mobx-react";
 import { useIntl } from "react-intl";
-
-import { useStore } from "../../store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const { Title } = Typography;
 
-const Home = () => {
+const Home: React.FC = () => {
   const { formatMessage: f } = useIntl();
 
-  const {
-    userStore: { username },
-    appStore: { lang },
-  } = useStore();
+  const username = useSelector<RootState>(
+    (state) => state.user.username
+  ) as string;
+  const lang = useSelector<RootState>((state) => state.app.lang) as string;
 
   return (
     <div>
@@ -25,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default observer(Home);
+export default Home;

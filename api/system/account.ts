@@ -20,7 +20,7 @@ module.exports = (request: NowRequest, response: NowResponse) => {
       message: '获取数据成功!',
       pageNum: num,
       pageSize: size,
-      total: Random.integer(size, 100),
+      total: 85,
       list,
     })
   } else {

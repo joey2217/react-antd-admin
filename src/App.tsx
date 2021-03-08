@@ -1,35 +1,28 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
-import Layout from "./layout";
+import React from "react";
+// https://tailwindcss.com/docs/dark-mode
+import { Provider } from "react-redux";
+import configStore from "./store";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import IntlWrapper from "./lang";
 import Login from "./pages/login";
-import Exception from "./pages/exception";
+import Layout from "./layout";
 
-import { useStore } from './store'
-import IntlWrapper from './language/index';
-
-import "./App.less";
+const store = configStore();
 
 function App() {
-  const { appStore: { theme, toggleTheme } } = useStore();
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      toggleTheme('dark');
-    }
-  }, [theme, toggleTheme]);
-
   return (
-    <IntlWrapper >
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact render={() => <Redirect to="/home" />} />
-          <Route path="/login" component={Login} />
-          <Route path="/exception/:code" component={Exception} />
-          <Route component={Layout} />
-        </Switch>
-      </BrowserRouter>
-    </IntlWrapper>
+    <Provider store={store}>
+      <div className="text-black dark:text-white bg-white dark:bg-black">
+        <IntlWrapper>
+          <BrowserRouter>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route component={Layout} />
+            </Switch>
+          </BrowserRouter>
+        </IntlWrapper>
+      </div>
+    </Provider>
   );
 }
 

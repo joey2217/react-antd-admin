@@ -1,43 +1,15 @@
-import React, { useEffect } from "react";
-import { useStore } from "../store";
-import { useHistory, useLocation } from "react-router-dom";
+import React from "react";
 import { Layout } from "antd";
-
-import AppHeader from "./AppHeader";
-import SideBar from "./SideBar";
+import Sider from "./Sider";
+import Header from "./Header";
 import AppContent from "./AppContent";
-import "./style.less";
 
 const AppLayout: React.FC = () => {
-  const { pathname } = useLocation();
-  const history = useHistory();
-
-  const {
-    userStore: { accessToken, getUserInfo, userId },
-  } = useStore();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        if (accessToken) {
-          if (!userId) {
-            await getUserInfo();
-          }
-        } else {
-          throw new Error("No AccessToken!");
-        }
-      } catch (error) {
-        console.error(error);
-        history.replace(`/login?ref=${pathname}`);
-      }
-    })();
-  }, [accessToken, getUserInfo, history, pathname, userId]);
-
   return (
-    <Layout id="layout" className="layout">
-      <SideBar />
+    <Layout className="h-screen">
+      <Sider />
       <Layout>
-        <AppHeader />
+        <Header />
         <AppContent />
       </Layout>
     </Layout>

@@ -1,14 +1,11 @@
-const CracoLessPlugin = require('craco-less');
-
+// craco.config.js
 module.exports = {
-  plugins: [
-    {
-      plugin: CracoLessPlugin,
-      options: {
-        lessLoaderOptions: {
-          javascriptEnabled: true,
-        },
-      },
+  style: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
     },
-  ],
-};
+  },
+}

@@ -1,37 +1,28 @@
 import React from "react";
-import { Route, Redirect,RouteProps } from "react-router-dom";
+import { Route, Redirect, RouteProps } from "react-router-dom";
 
-import { useStore } from "../../store";
-
-const AuthRoute = ({  path, ...rest }: RouteProps) => {
-  const {
-    userStore: { validateAuth },
-  } = useStore();
-  return validateAuth(path) ? (
-    <Route {...rest} />
-  ) : (
-    <Redirect
-      to={{
-        pathname: "/exception/403",
-        state: { ref: path },
-      }}
+const AuthRoute: React.FC<RouteProps> = ({
+  path,
+  component: Component,
+  ...rest
+}) => {
+  return (
+    <Route
+      path={path}
+      {...rest}
+      render={(props: any) =>
+        Component && path ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
     />
   );
 };
 export default AuthRoute;
-
-//  <Route
-//   {...rest}
-//   render={(props: RouteComponentProps<any>) =>
-//     validateAuth(props.location.pathname) ? (
-//       <Component />
-//     ) : (
-//       <Redirect
-//         to={{
-//           pathname: "/login",
-//           state: { ref: props.location },
-//         }}
-//       />
-//     )
-//   }
-// />

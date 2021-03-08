@@ -1,0 +1,14 @@
+/* ./src/index.css */
+@import "~antd/dist/antd.css";
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+
+.header-block {
+  padding: 0 10px;
+}
+.header-block:hover {
+  color: #1890ff;
+  box-shadow: 0 2px 1px #1890ff;
+}

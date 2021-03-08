@@ -1,13 +1,13 @@
-const AUTH_KEY = 'react_antd_admin_auth_key';
+const TOKEN_KEY = '_tk';
 
 export function setToken(token: string): void {
-  localStorage[AUTH_KEY] = token;
+  localStorage[TOKEN_KEY] = token;
 }
 
 export function getToken(): string {
-  return localStorage[AUTH_KEY] || '';
+  return localStorage[TOKEN_KEY] || '';
 }
 
 export function removeToken(): void {
-  localStorage.removeItem(AUTH_KEY);
+  localStorage.removeItem(TOKEN_KEY);
 }

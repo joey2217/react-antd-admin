@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, InputNumber, Button } from "antd";
+import { Form, Input, InputNumber, Button, Space } from "antd";
 
 const layout = {
   labelCol: {
@@ -10,7 +10,6 @@ const layout = {
   },
 };
 const validateMessages = {
-  
   /* eslint-disable no-template-curly-in-string */
   required: "${label} is required!",
   types: {
@@ -22,14 +21,21 @@ const validateMessages = {
   },
 };
 
-const DemoForm = () => {
+const DemoForm: React.FC = () => {
+  const [form] = Form.useForm();
+
   const onFinish = (values: any) => {
     console.log(values);
+  };
+
+  const onReset = () => {
+    form.resetFields();
   };
 
   return (
     <Form
       {...layout}
+      form={form}
       name="nest-messages"
       onFinish={onFinish}
       validateMessages={validateMessages}
@@ -77,9 +83,14 @@ const DemoForm = () => {
         <Input.TextArea />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 4 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
+        <Space>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+          <Button htmlType="button" onClick={onReset}>
+            Reset
+          </Button>
+        </Space>
       </Form.Item>
     </Form>
   );
