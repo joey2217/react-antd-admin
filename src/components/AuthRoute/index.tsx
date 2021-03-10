@@ -25,7 +25,7 @@ const AuthRoute: React.FC<RouteProps> = ({
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: "/error/403",
               state: { from: props.location },
             }}
           />
