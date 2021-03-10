@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import { Redirect, Route, Switch } from "react-router-dom";
 import AuthRoute from "../components/AuthRoute";
 const { Content } = Layout;
+const Home = lazy(() => import("../pages/home"))
 
 const AppContent: React.FC = () => {
   return (
@@ -10,7 +11,9 @@ const AppContent: React.FC = () => {
       <Suspense fallback={<div>Loading</div>}>
         <Switch>
           <Route path="/" exact render={() => <Redirect to="/home" />} />
-          <Route path="/home" component={lazy(() => import("../pages/home"))} />
+          <Route path="/home" >
+            <Home />
+          </Route>
           <AuthRoute path="/form" component={lazy(() => import("../pages/form"))} />
           <AuthRoute path="/table" component={lazy(() => import("../pages/table"))} />
           <AuthRoute path="/nested-menu*" component={lazy(() => import("../pages/menu"))} />
