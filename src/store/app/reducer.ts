@@ -4,6 +4,7 @@ import {
   CHANGE_LANG,
   getCollapsed,
   getLang,
+  setLang,
   getTheme,
   setTheme,
   TOGGLE_COLLAPSED,
@@ -22,6 +23,7 @@ export default function reducer(
 ): AppState {
   switch (action.type) {
     case CHANGE_LANG:
+      setLang(action.payload)
       return {
         ...state,
         lang: action.payload,

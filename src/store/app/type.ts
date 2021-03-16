@@ -40,6 +40,10 @@ export function getLang(): Lang {
   return localStorage[LOCAL_LANG] || navigator.language;
 }
 
+export function setLang(lang: Lang) {
+  return localStorage[LOCAL_LANG] = lang
+}
+
 const LOCAL_COLLAPSED = "collapsed";
 
 export function getCollapsed(): boolean {
