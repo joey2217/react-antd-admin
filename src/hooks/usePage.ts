@@ -36,7 +36,7 @@ export function usePage<T>(
         setLoading(false);
       }
     })();
-  }, [page]);
+  }, [page, getPageData]);
 
   const onReset = () => {
     setPage({ page: 1, size: page.size });

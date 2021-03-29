@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Table, Tag, Space, Card, Button, Popconfirm, message } from "antd";
 import Search from "../../../components/SearchForm";
 import TableToolbar, {
@@ -15,7 +15,7 @@ import {
 import AccountForm, { Op } from "./AccountForm";
 import { Page, usePage } from "../../../hooks/usePage";
 
-const AccountPage:React.FC = () => {
+const AccountPage: React.FC = () => {
   const columns = [
     {
       title: "Username",
@@ -119,19 +119,22 @@ const AccountPage:React.FC = () => {
   const [op, setOp] = useState<Op>("add");
   const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
 
-  const getList = async (page: Page) => {
-    const {
-      data: { total, list },
-    } = await getAccountList({
-      pageNum: page.page,
-      pageSize: page.size,
-      ...search,
-    });
-    return {
-      list,
-      total,
-    };
-  };
+  const getList = useCallback(
+    async (page: Page) => {
+      const {
+        data: { total, list },
+      } = await getAccountList({
+        pageNum: page.page,
+        pageSize: page.size,
+        ...search,
+      });
+      return {
+        list,
+        total,
+      };
+    },
+    [search],
+  )
 
   const { loading, dataSource, pagination } = usePage(getList);
 
