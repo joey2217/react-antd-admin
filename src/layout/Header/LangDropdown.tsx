@@ -1,7 +1,7 @@
 import React from "react";
 import { GlobalOutlined } from "@ant-design/icons";
 import { Menu, Dropdown } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { Lang } from "../../store/app/type";
 import { changeLang } from "../../store/app/actions";
@@ -18,7 +18,9 @@ const langList: { label: string; value: Lang }[] = [
 ];
 
 const LangDropdown: React.FC = () => {
-  const lang = useSelector<RootState>((state) => state.app.lang) as Lang;
+  const { lang } = useSelector<RootState, { lang: Lang }>((state) => ({
+    lang: state.app.lang
+  }), shallowEqual)
   const dispatch = useDispatch();
   const menu = (
     <Menu

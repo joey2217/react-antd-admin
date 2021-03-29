@@ -13,9 +13,11 @@ const { Header } = Layout;
 
 const AppHeader: React.FC = () => {
   const dispatch = useDispatch();
-  const collapsed = useSelector<RootState>(
-    (state) => state.app.collapsed
-  ) as boolean;
+  const { collapsed } = useSelector<RootState, { collapsed: boolean }>(
+    (state) => ({
+      collapsed: state.app.collapsed
+    })
+  )
   return (
     <Header
       className="bg-white flex items-center header"

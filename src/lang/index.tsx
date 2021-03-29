@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState, useEffect } from "react";
 import { IntlProvider } from "react-intl";
 import { ConfigProvider } from "antd";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { Lang } from "../store/app/type";
 
@@ -15,7 +15,9 @@ import zhCN from "./zhCN";
 moment.locale("en");
 
 const IntlWrapper = (props: PropsWithChildren<unknown>) => {
-  const lang = useSelector<RootState>((state) => state.app.lang) as Lang;
+  const { lang } = useSelector<RootState, { lang: Lang }>((state) => ({
+    lang: state.app.lang
+  }), shallowEqual)
 
   const [intlMessage, setIntlMessage] = useState(zhCN);
   const [configLocale, setConfigLocale] = useState(zhCNAntd);

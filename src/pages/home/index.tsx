@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, DatePicker } from "antd";
 import { useIntl } from "react-intl";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 const { Title } = Typography;
@@ -9,11 +9,10 @@ const { Title } = Typography;
 const Home: React.FC = () => {
   const { formatMessage: f } = useIntl();
 
-  const username = useSelector<RootState>(
-    (state) => state.user.username
-  ) as string;
-  const lang = useSelector<RootState>((state) => state.app.lang) as string;
-
+  const { username, lang } = useSelector<RootState, { username: string; lang: string }>((state) => ({
+    username: state.user.username,
+    lang: state.app.lang,
+  }), shallowEqual)
   return (
     <div>
       <Title level={3}>Username:{username}</Title>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 import { IMenu } from "../../api/login";
 import { RootState } from "../../store";
@@ -9,7 +9,9 @@ const AuthRoute: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const menus = useSelector<RootState>(state => state.user.menus) as IMenu[]
+  const { menus } = useSelector<RootState, { menus: IMenu[] }>(state => ({
+    menus: state.user.menus
+  }), shallowEqual)
   const validate = (path: string | string[] | undefined) => {
     // TODO validate permission
     console.log('validate path', path, menus);

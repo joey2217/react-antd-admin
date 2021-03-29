@@ -10,7 +10,7 @@ import {
   LineChartOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useHistory } from "react-router";
 import { getUserInfoAction } from "../../store/user/actions";
@@ -34,16 +34,17 @@ const AppMenu: React.FC = () => {
   const { formatMessage: f } = useIntl();
   const history = useHistory();
   const dispatch = useDispatch();
-  const token = useSelector<RootState>((state) => state.user.token) as string;
-  const useId = useSelector<RootState>((state) => state.user.userId) as string;
-  const menus = useSelector<RootState>((state) => state.user.menus) as IMenu[];
-
+  const { token, userId, menus} = useSelector<RootState, { token: string; userId: string; menus: IMenu[]}>(state =>  ({
+    token: state.user.token,
+    userId: state.user.userId,
+    menus: state.user.menus,
+  }),shallowEqual)
   useEffect(() => {
     (async () => {
-      console.log(token, useId, history, dispatch);
+      console.log(token, userId, history, dispatch);
       try {
         if (token) {
-          if (!useId) {
+          if (!userId) {
             await dispatch(getUserInfoAction());
           }
         } else {
@@ -54,7 +55,7 @@ const AppMenu: React.FC = () => {
         history.replace("/login", { form: history.location });
       }
     })();
-  }, [token, useId, history, dispatch]);
+  }, [token, userId, history, dispatch]);
 
   const generateMenu = (menuList: IMenu[]) =>
     menuList.map((menuItem) => {

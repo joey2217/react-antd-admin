@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Avatar, Dropdown, Menu, message } from "antd";
 import {
   GithubOutlined,
@@ -15,10 +15,13 @@ const UserAvatar: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { formatMessage: f } = useIntl();
-  const username = useSelector<RootState>(
-    (state) => state.user.username
-  ) as string;
-  const avatar = useSelector<RootState>((state) => state.user.avatar) as string;
+  const { username, avatar } = useSelector<RootState, { username: string; avatar: string }>(
+    (state) => ({
+      username: state.user.username,
+      avatar: state.user.avatar
+    }),
+    shallowEqual
+  )
   const userLogout = async () => {
     try {
       const msg = await dispatch(logoutAction());
@@ -59,7 +62,7 @@ const UserAvatar: React.FC = () => {
   return (
     <Dropdown overlay={menu} trigger={["hover", "click"]}>
       <div className="header-block cursor-pointer flex items-center">
-        <Avatar src={avatar}  />
+        <Avatar src={avatar} />
         <span className="ml-2">{username}</span>
       </div>
     </Dropdown>
