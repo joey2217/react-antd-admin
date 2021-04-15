@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { GlobalOutlined } from "@ant-design/icons";
 import { Menu, Dropdown } from "antd";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -42,4 +42,4 @@ const LangDropdown: React.FC = () => {
   );
 };
 
-export default LangDropdown;
+export default memo(LangDropdown);

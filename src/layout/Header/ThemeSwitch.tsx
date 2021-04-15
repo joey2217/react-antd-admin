@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Select } from "antd";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useIntl } from "react-intl";
@@ -8,9 +8,12 @@ import { toggleTheme } from "../../store/app/actions";
 const { Option } = Select;
 
 const ThemeSwitch: React.FC = () => {
-  const { theme } = useSelector<RootState, { theme: Theme }>((state) => ({
-    theme: state.app.theme
-  }), shallowEqual)
+  const { theme } = useSelector<RootState, { theme: Theme }>(
+    (state) => ({
+      theme: state.app.theme,
+    }),
+    shallowEqual
+  );
   const dispatch = useDispatch();
   const { formatMessage: f } = useIntl();
 
@@ -28,4 +31,4 @@ const ThemeSwitch: React.FC = () => {
     </div>
   );
 };
-export default ThemeSwitch;
+export default memo(ThemeSwitch);

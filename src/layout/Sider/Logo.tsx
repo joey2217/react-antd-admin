@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as LogoImg } from "./logo.svg";
 
@@ -15,4 +15,4 @@ const Logo: React.FC = () => {
     </Link>
   );
 };
-export default Logo;
+export default memo(Logo);

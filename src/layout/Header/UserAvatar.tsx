@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Avatar, Dropdown, Menu, message } from "antd";
 import {
@@ -15,13 +15,16 @@ const UserAvatar: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { formatMessage: f } = useIntl();
-  const { username, avatar } = useSelector<RootState, { username: string; avatar: string }>(
+  const { username, avatar } = useSelector<
+    RootState,
+    { username: string; avatar: string }
+  >(
     (state) => ({
       username: state.user.username,
-      avatar: state.user.avatar
+      avatar: state.user.avatar,
     }),
     shallowEqual
-  )
+  );
   const userLogout = async () => {
     try {
       const msg = await dispatch(logoutAction());
@@ -69,4 +72,4 @@ const UserAvatar: React.FC = () => {
   );
 };
 
-export default UserAvatar;
+export default memo(UserAvatar);

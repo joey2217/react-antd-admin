@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout } from "antd";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector,shallowEqual } from "react-redux";
 import classnames from "classnames";
 import { RootState } from "../../store";
 import { toggleCollapsed } from "../../store/app/actions";
@@ -9,6 +9,7 @@ import UserAvatar from "./UserAvatar";
 import ThemeSwitch from "./ThemeSwitch";
 import FullscreenSwitch from "./FullscreenSwitch";
 import LangDropdown from "./LangDropdown";
+
 const { Header } = Layout;
 
 const AppHeader: React.FC = () => {
@@ -16,7 +17,8 @@ const AppHeader: React.FC = () => {
   const { collapsed } = useSelector<RootState, { collapsed: boolean }>(
     (state) => ({
       collapsed: state.app.collapsed
-    })
+    }),
+    shallowEqual
   )
   return (
     <Header
