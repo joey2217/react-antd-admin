@@ -1,6 +1,18 @@
-import { atom } from "recoil";
+import { atom } from 'recoil'
+import { getLanguage, LOCAL_LNG, simpleLocalStorageEffect } from './helper'
+import type { Language } from './helper'
+import i18n from '../i18n'
 
-export const textState = atom({
-  key: 'textState', // unique ID (with respect to other atoms/selectors)
-  default: '', // default value (aka initial value)
-});
+// language
+export const languageState = atom<Language>({
+  key: 'languageState',
+  default: getLanguage(),
+  effects: [
+    simpleLocalStorageEffect<Language>(LOCAL_LNG),
+    ({ onSet }) => {
+      onSet((lng) => {
+        i18n.changeLanguage(lng)
+      })
+    },
+  ],
+})
