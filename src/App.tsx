@@ -1,29 +1,25 @@
-import React from "react";
-// https://tailwindcss.com/docs/dark-mode
-import { Provider } from "react-redux";
-import configStore from "./store";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import IntlWrapper from "./lang";
-import Login from "./pages/login";
-import Layout from "./layout";
+import React from 'react'
+import { ConfigProvider, theme } from 'antd'
+import { useTheme } from './hooks/useTheme'
+import { RouterProvider } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
+import router from './router'
 
-const store = configStore();
+const { darkAlgorithm, defaultAlgorithm } = theme
 
-function App() {
+const App: React.FC = () => {
+  const [theme] = useTheme()
   return (
-    <Provider store={store}>
-      <div className="text-black dark:text-white bg-white dark:bg-black">
-        <IntlWrapper>
-          <BrowserRouter>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route component={Layout} />
-            </Switch>
-          </BrowserRouter>
-        </IntlWrapper>
-      </div>
-    </Provider>
-  );
+    <ConfigProvider
+      theme={{
+        algorithm: theme === 'dark' ? darkAlgorithm : defaultAlgorithm,
+      }}
+    >
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </ConfigProvider>
+  )
 }
 
-export default App;
+export default App

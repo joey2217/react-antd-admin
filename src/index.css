@@ -1,17 +1,14 @@
-/* ./src/index.css */
-@import "~antd/dist/antd.css";
 /* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
 
-.header-block {
-  padding: 0 10px;
-}
-.header-block:hover {
-  color: #1890ff;
-  box-shadow: 0 2px 1px #1890ff;
+html {
+  color: rgba(0, 0, 0, 0.88);
+  background: rgb(255, 255, 255);
+  transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 }
 
-#main {
-  overflow: auto;
+html.dark {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgb(20, 20, 20);
 }

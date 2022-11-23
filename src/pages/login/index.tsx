@@ -1,29 +1,20 @@
-import React from "react";
-import { Card, Row, Col } from "antd";
-import { useIntl } from "react-intl";
-import LoginForm from "./LoginForm";
-import LangDropdown from "../../layout/Header/LangDropdown";
+import { Card, Col, Row } from 'antd'
+import React, { memo } from 'react'
 
 const Login: React.FC = () => {
-  const { formatMessage: f } = useIntl();
-
   return (
     <Row
       align="middle"
       justify="center"
-      className="h-screen pb-20 bg-gradient-to-r from-indigo-400 via-green-500 to-blue-400"
+      className="h-screen pb-20 bg-gradient-to-r from-blue-200 to-cyan-200"
     >
       <Col xs={24} sm={16} md={14} lg={12} xl={6}>
-        <Card
-          className="login-card"
-          title={f({ id: "login" })}
-          extra={<LangDropdown />}
-        >
-          <LoginForm />
+        <Card className="login-card" title={'登录'} extra={'TODO'}>
+          {/* <LoginForm /> */}
         </Card>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default Login;
+export default memo(Login)
