@@ -7,11 +7,13 @@ const en = {
   logout: 'Logout',
   success: 'success!',
   //login
-  login: 'Login',
-  username: 'Username',
-  password: 'Password',
-  usernameMessage: 'Please input correct username!',
-  passwordMessage: 'Please input correct password!',
+  login: {
+    title: 'Login',
+    username: 'Username',
+    password: 'Password',
+    usernameMessage: 'Please input correct username!',
+    passwordMessage: 'Please input correct password!',
+  },
   // Exception
   backHome: 'Back Home',
   errorSubTitle: 'Sorry, the server is reporting an error.',

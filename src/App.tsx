@@ -6,7 +6,6 @@ import zhCN from 'antd/locale/zh_CN'
 import en from 'antd/locale/en_US'
 import { themeState} from './store/atom'
 import router from './router'
-
 import { languageState } from './store/atom'
 
 const { darkAlgorithm, defaultAlgorithm } = theme
