@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import zhCN from 'antd/locale/zh_CN'
 import en from 'antd/locale/en_US'
-import { useTheme } from './hooks/useTheme'
+import { themeState} from './store/atom'
 import router from './router'
 
 import { languageState } from './store/atom'
@@ -12,8 +12,8 @@ import { languageState } from './store/atom'
 const { darkAlgorithm, defaultAlgorithm } = theme
 
 const App: React.FC = () => {
-  const [theme] = useTheme()
   const language = useRecoilValue(languageState)
+  const theme = useRecoilValue(themeState)
   return (
     <ConfigProvider
       theme={{
