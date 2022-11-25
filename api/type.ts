@@ -1,4 +1,4 @@
-export const TOKEN_KEY = 'react-admin-request-token'
+export const TOKEN_KEY = 'Authorization'
 
 export type Role = | "admin" | "user"
 

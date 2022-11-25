@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getToken } from '../utils/auth'
+import { message } from 'antd'
 
 const request = axios.create({
   baseURL: '/api',
@@ -37,6 +38,7 @@ request.interceptors.response.use(
 )
 
 function handleError(error: any) {
+  let msg = error.message || '请求失败'
   if (error.response) {
     // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
     console.log(error.response.data)
@@ -52,6 +54,7 @@ function handleError(error: any) {
     console.log('Error', error.message)
   }
   console.error(error)
+  message.error(msg)
 }
 
 export default request

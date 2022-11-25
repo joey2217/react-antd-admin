@@ -1,16 +1,31 @@
-import React, { memo } from 'react'
-import { Button, Form, Input } from 'antd'
+import React, { memo, useState } from 'react'
+import { Button, Form, Input, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { setToken } from '../../utils/auth'
+import { login } from '../../api/login'
+import { useMessage } from '../../context/message'
 
 const LoginForm: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const messageApi = useMessage()
+
+  const [loading, setLoading] = useState(false)
 
   const onFinish = (values: any) => {
     console.log('Success:', values)
-    navigate('/', { replace: true })
+    setLoading(true)
+    login(values)
+      .then((res) => {
+        setToken(res.data.token)
+        messageApi.success(res.data.message)
+        navigate('/', { replace: true })
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
 
   return (
@@ -44,7 +59,7 @@ const LoginForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button block type="primary" htmlType="submit">
+        <Button block loading={loading} type="primary" htmlType="submit">
           {t('login.title')}
         </Button>
       </Form.Item>

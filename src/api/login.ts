@@ -18,7 +18,7 @@ export function login(
   data: LoginData
 ): AxiosPromise<CommonResponse<LoginResponse>> {
   return request({
-    url: '/api/user/login',
+    url: '/user/login',
     method: 'POST',
     data,
   })
@@ -44,7 +44,7 @@ export interface UserInfo {
  */
 export function getUserInfo(): AxiosPromise<CommonResponse<UserInfo>> {
   return request({
-    url: '/api/user/user-info',
+    url: '/user/user-info',
     method: 'GET',
   })
 }
@@ -53,7 +53,7 @@ export function getUserInfo(): AxiosPromise<CommonResponse<UserInfo>> {
  */
 export function logout(): AxiosPromise<CommonResponse> {
   return request({
-    url: '/api/user/logout',
+    url: '/user/logout',
     method: 'POST',
   })
 }

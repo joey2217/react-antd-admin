@@ -1,4 +1,4 @@
-const TOKEN_KEY = '_tk';
+export const TOKEN_KEY = '_tk';
 
 export function setToken(token: string): void {
   localStorage[TOKEN_KEY] = token;

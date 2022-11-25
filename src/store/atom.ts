@@ -9,6 +9,7 @@ import {
 } from './helper'
 import type { Language, Theme } from './helper'
 import i18n from '../i18n'
+import { TOKEN_KEY } from '../utils/auth'
 
 // language
 export const languageState = atom<Language>({
@@ -35,4 +36,10 @@ export const themeState = atom<Theme>({
       })
     },
   ],
+})
+
+export const tokenState = atom<string>({
+  key: 'tokenState',
+  default: '',
+  effects: [simpleLocalStorageEffect<string>(TOKEN_KEY)],
 })

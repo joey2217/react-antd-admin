@@ -22,7 +22,7 @@ export const simpleLocalStorageEffect: <T>(key: string) => AtomEffect<T> =
   (key) =>
   ({ setSelf, onSet }) => {
     const savedValue = localStorage.getItem(key)
-    console.log('simpleLocalStorageEffect', savedValue);
+    console.log('simpleLocalStorageEffect', savedValue, key);
     if (savedValue != null) {
       setSelf(savedValue as any)
     }
