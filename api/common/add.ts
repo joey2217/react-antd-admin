@@ -1,11 +1,14 @@
-import { NowRequest, NowResponse } from '@vercel/node'
-import { Random } from "mockjs";
+import { VercelRequest, VercelResponse } from '@vercel/node'
+import { Random } from 'mockjs'
 import { TOKEN_KEY } from '../type'
 
-module.exports = (request: NowRequest, response: NowResponse) => {
+export default function handler(
+  request: VercelRequest,
+  response: VercelResponse
+) {
   const token = request.headers[TOKEN_KEY]
   if (token) {
-    const flag = Math.random() > 0.2;
+    const flag = Math.random() > 0.2
     if (flag) {
       response.status(200).json({
         message: `添加数据成功!`,
@@ -23,7 +26,7 @@ module.exports = (request: NowRequest, response: NowResponse) => {
     response.status(403).json({
       message: '无权限!',
       token,
-      headers:request.headers,
+      headers: request.headers,
     })
   }
-};
+}

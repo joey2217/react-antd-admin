@@ -2,24 +2,22 @@ import React, { memo } from 'react'
 import { Button, Form, Input } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm: React.FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   const onFinish = (values: any) => {
     console.log('Success:', values)
-  }
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
+    navigate('/', { replace: true })
   }
 
   return (
     <Form
-      name="basic"
+      name="login"
       initialValues={{ username: 'Hello', password: 'World' }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item
         name="username"

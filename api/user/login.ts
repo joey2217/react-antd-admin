@@ -1,17 +1,20 @@
-import { NowRequest, NowResponse } from '@vercel/node'
-import { Random } from "mockjs";
+import { VercelRequest, VercelResponse } from '@vercel/node'
+import { Random } from 'mockjs'
 
-module.exports = (request: NowRequest, response: NowResponse) => {
+export default function handler(
+  request: VercelRequest,
+  response: VercelResponse
+) {
   const { username, password } = request.body
   if (username && password) {
     response.status(200).json({
       name: Random.last(),
       token: Random.guid(),
-      message: '登录成功!'
+      message: '登录成功!',
     })
   } else {
     response.status(403).json({
-      message: '登录失败!'
+      message: '登录失败!',
     })
   }
-};
+}

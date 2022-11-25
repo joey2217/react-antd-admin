@@ -5,6 +5,7 @@ import LoginForm from './LoginForm'
 
 const Login: React.FC = () => {
   const { t } = useTranslation()
+
   return (
     <Row
       align="middle"

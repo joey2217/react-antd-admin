@@ -1,12 +1,15 @@
-import { NowRequest, NowResponse } from '@vercel/node'
-import { TOKEN_KEY,authList } from '../type'
+import { VercelRequest, VercelResponse } from '@vercel/node'
+import { TOKEN_KEY, authList } from '../type'
 
-module.exports = (request: NowRequest, response: NowResponse) => {
+export default function handler(
+  request: VercelRequest,
+  response: VercelResponse
+) {
   const token = request.headers[TOKEN_KEY]
   if (token) {
     response.status(200).json({
       message: '获取数据成功!',
-      list:authList,
+      list: authList,
     })
   } else {
     response.status(403).json({
@@ -15,4 +18,4 @@ module.exports = (request: NowRequest, response: NowResponse) => {
       headers: request.headers,
     })
   }
-};
+}

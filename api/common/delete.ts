@@ -1,13 +1,16 @@
-import { NowRequest, NowResponse } from '@vercel/node'
-import { Random } from "mockjs";
+import { VercelRequest, VercelResponse } from '@vercel/node'
+import { Random } from 'mockjs'
 import { TOKEN_KEY } from '../type'
 
-module.exports = (request: NowRequest, response: NowResponse) => {
-  const { ids } = request.query;
+export default function handler(
+  request: VercelRequest,
+  response: VercelResponse
+) {
+  const { ids } = request.query
   const idList = (ids as string).split(',')
   const token = request.headers[TOKEN_KEY]
   if (token) {
-    const flag = Math.random() > 0.2;
+    const flag = Math.random() > 0.2
     if (flag) {
       response.status(200).json({
         message: `删除ID${idList.join()}数据成功!`,
@@ -26,4 +29,4 @@ module.exports = (request: NowRequest, response: NowResponse) => {
       headers: request.headers,
     })
   }
-};
+}

@@ -1,5 +1,6 @@
-import { NowRequest, NowResponse } from "@vercel/node";
+import { VercelRequest, VercelResponse } from '@vercel/node'
 
-module.exports = (request: NowRequest, response: NowResponse) => {
-  response.status(200).send("Hello from useRequest!");
-};
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  const { name = 'World' } = req.query
+  res.send(`Hello ${name}!`)
+}
