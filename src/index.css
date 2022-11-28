@@ -3,21 +3,29 @@
 @tailwind utilities;
 
 html {
-  color: rgba(0, 0, 0, 0.88);
-  background: rgb(255, 255, 255);
+  --text-color: rgba(0, 0, 0, 0.88);
+  --background: rgb(255, 255, 255);
+  --dark-text-color: rgba(255, 255, 255, 0.85);
+  --dark-background: rgb(20, 20, 20);
+  --header-background: #001529;
+}
+
+html {
+  color: var(--text-color);
+  background: var(--background);
   transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 }
 
 html.dark {
-  color: rgba(255, 255, 255, 0.85);
-  background: rgb(20, 20, 20);
+  color: var(--dark-text-color);
+  background: var(--dark-background);
 }
 
-#header{
-  color: rgba(255, 255, 255, 0.85);
+#header {
+  color: var(--dark-text-color);
 }
 
-#logo{
-  background: #001529;
-  color: rgba(255, 255, 255, 0.85);
+#logo {
+  background: var(--header-background);
+  color: var(--dark-text-color);
 }
