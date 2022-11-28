@@ -11,7 +11,7 @@ interface IMenu {
 
 const menuList: Array<IMenu> = [
   {
-    path: '/home',
+    path: '/',
     title: 'home',
     icon: 'DashboardOutlined',
   },

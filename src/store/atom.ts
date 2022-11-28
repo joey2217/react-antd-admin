@@ -10,6 +10,7 @@ import {
 import type { Language, Theme } from './helper'
 import i18n from '../i18n'
 import { TOKEN_KEY } from '../utils/auth'
+import type { UserInfo } from '../api/login'
 
 // language
 export const languageState = atom<Language>({
@@ -42,4 +43,9 @@ export const tokenState = atom<string>({
   key: 'tokenState',
   default: '',
   effects: [simpleLocalStorageEffect<string>(TOKEN_KEY)],
+})
+
+export const userInfoState = atom<UserInfo | undefined>({
+  key: 'userInfoState',
+  default: undefined,
 })

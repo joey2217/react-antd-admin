@@ -8,7 +8,7 @@ const request = axios.create({
   // timeout: 5000
 })
 
-const HEADER_KEY = 'Authorization'
+const HEADER_KEY = 'authorization'
 const PREFIX = 'Bearer '
 
 request.interceptors.request.use(

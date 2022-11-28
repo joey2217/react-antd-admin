@@ -12,3 +12,12 @@ html.dark {
   color: rgba(255, 255, 255, 0.85);
   background: rgb(20, 20, 20);
 }
+
+#header{
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#logo{
+  background: #001529;
+  color: rgba(255, 255, 255, 0.85);
+}

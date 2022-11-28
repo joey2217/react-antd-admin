@@ -4,11 +4,16 @@ import Login from './pages/login'
 import Error from './pages/error'
 import NoMatch from './pages/error/404'
 import Home from './pages/home'
+import RequireAuth from './components/RequireAuth'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <RequireAuth>
+        <Layout />
+      </RequireAuth>
+    ),
     errorElement: <Error />,
     children: [
       {

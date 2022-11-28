@@ -1,4 +1,4 @@
-export const TOKEN_KEY = 'Authorization'
+export const TOKEN_KEY = 'authorization'
 
 export type Role = | "admin" | "user"
 
