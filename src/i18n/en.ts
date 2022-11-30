@@ -1,7 +1,5 @@
 const en = {
   hello: 'Hello, {{name}} !',
-  exitFullscreen: 'exit fullscreen',
-  fullscreen: 'fullscreen',
   logout: 'Logout',
   success: 'success!',
   home: 'Home',

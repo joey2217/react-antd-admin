@@ -25,55 +25,55 @@ const menuList: Array<IMenu> = [
     title: 'form',
     icon: 'FormOutlined',
   },
-  {
-    path: '/system',
-    title: 'system',
-    icon: 'SettingOutlined',
-    children: [
-      {
-        path: '/system/account',
-        title: 'account',
-      },
-      {
-        path: '/system/auth',
-        title: 'auth',
-      },
-      {
-        path: '/system/role',
-        title: 'role',
-      },
-    ],
-  },
-  {
-    path: '/editor',
-    title: 'editor',
-    icon: 'HighlightOutlined',
-    children: [
-      {
-        path: '/editor/flow',
-        title: 'flow',
-      },
-      {
-        path: '/editor/mind',
-        title: 'mind',
-      },
-    ],
-  },
-  {
-    path: '/charts',
-    title: 'charts',
-    icon: 'LineChartOutlined',
-    children: [
-      {
-        path: '/charts/line',
-        title: 'lineCharts',
-      },
-      {
-        path: '/charts/common',
-        title: 'commonCharts',
-      },
-    ],
-  },
+  // {
+  //   path: '/system',
+  //   title: 'system',
+  //   icon: 'SettingOutlined',
+  //   children: [
+  //     {
+  //       path: '/system/account',
+  //       title: 'account',
+  //     },
+  //     {
+  //       path: '/system/auth',
+  //       title: 'auth',
+  //     },
+  //     {
+  //       path: '/system/role',
+  //       title: 'role',
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '/editor',
+  //   title: 'editor',
+  //   icon: 'HighlightOutlined',
+  //   children: [
+  //     {
+  //       path: '/editor/flow',
+  //       title: 'flow',
+  //     },
+  //     {
+  //       path: '/editor/mind',
+  //       title: 'mind',
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '/charts',
+  //   title: 'charts',
+  //   icon: 'LineChartOutlined',
+  //   children: [
+  //     {
+  //       path: '/charts/line',
+  //       title: 'lineCharts',
+  //     },
+  //     {
+  //       path: '/charts/common',
+  //       title: 'commonCharts',
+  //     },
+  //   ],
+  // },
   {
     path: '/text-editor',
     title: 'textEditor',
