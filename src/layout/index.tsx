@@ -1,21 +1,12 @@
-import React, { memo, useState } from 'react'
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons'
+import React, { memo } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Layout, Menu } from 'antd'
+import { Layout } from 'antd'
 import Sider from './Sider'
 import Header from './Header'
 
 const { Content } = Layout
 
 const AppLayout: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
-  
   return (
     <Layout className="h-screen overflow-hidden">
       <Sider />
