@@ -1,6 +1,6 @@
-import React, { memo, useId } from 'react'
+import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import {
   DownOutlined,
@@ -8,12 +8,11 @@ import {
   HomeOutlined,
   LogoutOutlined,
 } from '@ant-design/icons'
-import { Avatar, MenuProps } from 'antd'
-import { Dropdown, Space } from 'antd'
+import { Avatar, Dropdown, Space } from 'antd'
 import { userInfoState } from '../../store/atom'
 import { logout } from '../../api/login'
-import Link from 'antd/es/typography/Link'
 import { useMessage } from '../../context/message'
+import type { MenuProps } from 'antd'
 
 const UserAvatar: React.FC = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
@@ -23,7 +22,7 @@ const UserAvatar: React.FC = () => {
 
   const items: MenuProps['items'] = [
     {
-      label: <Link>{t('home')}</Link>,
+      label: <Link to="/">{t('home')}</Link>,
       icon: <HomeOutlined />,
       key: 'home',
     },
